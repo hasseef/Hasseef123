@@ -2,14 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>منصة حصيف — نموذج أولي (ملف واحد)</title>
-
-<!-- Leaflet + Chart.js (CDN) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
 :root{--green:#1f7a4d;--gold:#d6a64b;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
 *{box-sizing:border-box}html{direction:rtl}body{margin:0;font-family:Cairo,system-ui,-apple-system,Segoe UI,Roboto,'Noto Naskh Arabic',sans-serif;color:var(--ink);background:var(--bg)}
@@ -51,18 +48,12 @@ a{color:inherit;text-decoration:none}
 .p-card img{max-width:100%;max-height:56px;object-fit:contain}
 .section-title{display:flex;align-items:center;gap:10px}
 .badge-consult{background:#fff;border:1px dashed var(--gold);color:var(--gold);border-radius:999px;padding:4px 10px;font-size:.85rem}
-.hidden{display:none}
-header .brand small{color:var(--muted)}
-/* قصص الأثر */
+.view{display:none}.view.active{display:block}
+.role{display:inline-block;margin-right:8px;padding:2px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);font-size:.85rem}
+.social a{margin:0 8px}
 .story{display:flex;gap:12px;align-items:flex-start}
 .story img{width:72px;height:72px;border-radius:10px;border:1px solid var(--line);object-fit:cover}
 .story .meta{font-size:.9rem;color:var(--muted)}
-/* مساحة المحتوى */
-.view{display:none}
-.view.active{display:block}
-/* شارة الدور */
-.role{display:inline-block;margin-right:8px;padding:2px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);font-size:.85rem}
-.social a{margin:0 8px}
 </style>
 </head>
 <body>
@@ -70,16 +61,16 @@ header .brand small{color:var(--muted)}
 <header class="header">
   <div class="top-strip">
     <div class="logos-right">
-      <img id="logo-vision" alt="Vision 2030">
-      <img id="logo-talbiya" alt="Talbiya Initiative">
-      <a href="https://www.alahli.com" title="الراعي الرسمي — البنك الأهلي السعودي" target="_blank" rel="noopener">
-        <img id="logo-snb" alt="SNB Sponsor">
+      <img id="logo-vision" alt="Vision 2030" onerror="this.replaceWith(document.createTextNode('رؤية 2030'))">
+      <img id="logo-talbiya" alt="Talbiya" onerror="this.replaceWith(document.createTextNode('مبادرة تلبية'))">
+      <a href="https://www.alahli.com" target="_blank" rel="noopener" title="الراعي الرسمي — البنك الأهلي السعودي">
+        <img id="logo-snb" alt="SNB" onerror="this.replaceWith(document.createTextNode('SNB'))">
       </a>
     </div>
   </div>
   <div class="container row">
     <div class="brand">
-      <img id="logo-hasseef" alt="Hasseef"/>
+      <img id="logo-hasseef" alt="Hasseef" onerror="this.replaceWith(document.createTextNode('حصيف'))"/>
       <div>
         <div class="title">منصة حصيف — التكامل الوطني للتنمية</div>
         <small>مواءمة مع رؤية 2030 ودعم الشراكات بين القطاعات</small>
@@ -132,18 +123,12 @@ header .brand small{color:var(--muted)}
         <h3>قصص أثر</h3>
         <div class="story">
           <img src="https://picsum.photos/seed/s1/200/200" alt="">
-          <div>
-            <b>منحة رعت مسرّعة جامعية</b>
-            <div class="meta">نتج عنها 12 شركة ناشئة و84 وظيفة.</div>
-          </div>
+          <div><b>منحة رعت مسرّعة جامعية</b><div class="meta">نتج عنها 12 شركة ناشئة و84 وظيفة.</div></div>
         </div>
         <hr/>
         <div class="story">
           <img src="https://picsum.photos/seed/s2/200/200" alt="">
-          <div>
-            <b>تطوع متخصص</b>
-            <div class="meta">خبراء درّبوا 200 طالب على تحليل البيانات.</div>
-          </div>
+          <div><b>تطوع متخصص</b><div class="meta">خبراء درّبوا 200 طالب على تحليل البيانات.</div></div>
         </div>
       </div>
       <div class="card">
@@ -161,7 +146,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الشركاء -->
 <section class="view" id="view-partners">
   <div class="container">
     <h2 class="section-title">الشركاء الاستراتيجيون</h2>
@@ -172,7 +156,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- سوق المرافق -->
 <section class="view" id="view-facility-market">
   <div class="container">
     <h2>سوق المرافق</h2>
@@ -186,7 +169,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- التقارير -->
 <section class="view" id="view-reports">
   <div class="container">
     <h2>التقارير</h2>
@@ -206,7 +188,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الاستشارات -->
 <section class="view" id="view-consultations">
   <div class="container">
     <h2>الاستشارات</h2>
@@ -252,7 +233,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الحاضنات/المسرّعات -->
 <section class="view" id="view-incubators">
   <div class="container">
     <h2>الحاضنات والمسرّعات</h2>
@@ -283,7 +263,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الوظائف -->
 <section class="view" id="view-jobs">
   <div class="container">
     <h2>لوحة الوظائف</h2>
@@ -298,7 +277,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الاشتراكات -->
 <section class="view" id="view-subscriptions">
   <div class="container">
     <h2>باقات الاشتراك</h2>
@@ -329,7 +307,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- مواءمة 2030/SDGs -->
 <section class="view" id="view-alignment">
   <div class="container">
     <h2>مواءمة 2030/SDGs</h2>
@@ -350,7 +327,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- الدعم الفني -->
 <section class="view" id="view-support">
   <div class="container">
     <h2>تذكرة الدعم الفني</h2>
@@ -365,7 +341,6 @@ header .brand small{color:var(--muted)}
   </div>
 </section>
 
-<!-- حسابات (شاشات انتقال) -->
 <section class="view" id="view-account">
   <div class="container" id="account-wrap"></div>
 </section>
@@ -382,262 +357,116 @@ header .brand small{color:var(--muted)}
 </footer>
 
 <script>
-/* ====== بيانات مبدئية ====== */
-/* ضع روابط الشعارات الرسمية هنا (https) أو Data URI */
+/* ====== روابط الشعارات ====== */
 const logos = {
-  hasseef: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5YII=",
-  vision:  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5YII=",
-  talbiya: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5YII=",
-  snb:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5YII="
+  hasseef: "REPLACE_WITH_HASSEEF_LOGO_URL", // ضع رابط PNG/SVG عام أو ارفعه للمستودع واكتب اسمه النسبي
+  talbiya: "REPLACE_WITH_TALBIYA_LOGO_URL",
+  vision:  "https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg",
+  snb:     "https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg"
 };
 
-// شركاء — استبدل img بروابط شعاراتهم الرسمية لاحقًا
 const partners = [
   {name:"منشآت", type:"strategic", url:"https://www.monshaat.gov.sa", img:logos.vision},
   {name:"بنك التنمية الاجتماعية", type:"strategic", url:"https://www.sdb.gov.sa", img:logos.vision},
   {name:"المركز الوطني لتنمية القطاع غير الربحي", type:"strategic", url:"https://ncnp.gov.sa", img:logos.vision},
   {name:"وزارة الموارد البشرية والتنمية الاجتماعية", type:"strategic", url:"https://www.hrsd.gov.sa", img:logos.vision},
   {name:"أداء", type:"strategic", url:"https://adaa.gov.sa", img:logos.vision},
-  {name:"شركة تلبية للبحث والتطوير", type:"consultant", url:"#", img:logos.talbiya}, // الشريك الاستشاري
-  {name:"البنك الأهلي السعودي", type:"sponsor", url:"https://www.alahli.com", img:logos.snb} // الراعي الرسمي
+  {name:"شركة تلبية للبحث والتطوير", type:"consultant", url:"#", img:logos.talbiya},
+  {name:"البنك الأهلي السعودي", type:"sponsor", url:"https://www.alahli.com", img:logos.snb}
 ];
 
-// وظائف
 const JOBS = [
   {title:"محلل بيانات", sector:"خاص",   type:"دوام كامل", skills:"SQL, Python", city:"الرياض"},
   {title:"مدير مشروع غير ربحي", sector:"غير ربحي", type:"جزئي", skills:"PM, أثر", city:"جدة"},
   {title:"باحث مساعد", sector:"جامعة", type:"تدريب تعاوني", skills:"إحصاء", city:"حائل"},
   {title:"استشاري جدوى", sector:"حكومي", type:"عقد", skills:"تحليل مالي", city:"الدمام"},
 ];
-
-// مرافق
 const FACILITIES = [
   {name:"قاعة وطني", city:"الرياض", cap:600, price:12000, lat:24.7136, lng:46.6753, img:"https://picsum.photos/seed/a/400/220"},
   {name:"مسرح الابتكار", city:"جدة", cap:800, price:18000, lat:21.4858, lng:39.1925, img:"https://picsum.photos/seed/b/400/220"},
   {name:"مركز المؤتمرات", city:"الخبر", cap:1200, price:35000, lat:26.2172, lng:50.1971, img:"https://picsum.photos/seed/c/400/220"},
 ];
-
-// مواءمة
 const V6  = ["اقتصاد مزدهر","وطن طموح","مجتمع حيوي","استدامة بيئية","حكومة فعّالة","تحول رقمي"];
 const V27 = Array.from({length:27}, (_,i)=>`الهدف الفرعي ${i+1}`);
 const V96 = Array.from({length:96}, (_,i)=>`الهدف التفصيلي ${i+1}`);
 
-/* ====== أدوات ====== */
 const qs=(k)=>new URLSearchParams(location.search).get(k);
 const role=()=> (qs('role')||'viewer');
-function filterTable(tableId, q){
-  const ql=(q||"").toLowerCase();
-  document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{
-    tr.style.display = tr.innerText.toLowerCase().includes(ql)?'':'none';
-  });
-}
+function filterTable(tableId,q){const ql=(q||"").toLowerCase();document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{tr.style.display=tr.innerText.toLowerCase().includes(ql)?'':'none';});}
 function exportTableCSV(tableId, filename){
-  const rows=[];
-  const ths=[...document.querySelectorAll(`#${tableId} thead th`)].map(th=>th.innerText.trim());
-  rows.push(ths);
-  document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{
-    rows.push([...tr.children].map(td=>('"' + td.innerText.replace(/"/g,'""') + '"')));
-  });
-  const csv = rows.map(r=>r.join(',')).join('\n');
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=filename; a.click();
+  const rows=[], ths=[...document.querySelectorAll(`#${tableId} thead th`)].map(th=>th.innerText.trim());
+  rows.push(ths); document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>rows.push([...tr.children].map(td=>('"' + td.innerText.replace(/"/g,'""') + '"'))));
+  const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=filename; a.click();
 }
 function setLogos(){
-  document.getElementById('logo-hasseef').src = logos.hasseef;
-  document.getElementById('logo-vision').src  = logos.vision;
-  document.getElementById('logo-talbiya').src = logos.talbiya;
-  document.getElementById('logo-snb').src     = logos.snb;
+  const set=(id,url,altTxt)=>{const el=document.getElementById(id); if(url&&url!=='REPLACE_WITH_'+id.toUpperCase().replace('-','_')+'_URL'){ el.src=url; } else { el.removeAttribute('src'); el.setAttribute('alt',altTxt);} };
+  set('logo-hasseef', logos.hasseef, 'حصيف'); set('logo-talbiya', logos.talbiya, 'مبادرة تلبية');
+  document.getElementById('logo-vision').src = logos.vision; document.getElementById('logo-snb').src = logos.snb;
 }
-function showRolePill(){
-  const r=role(); const pill=document.getElementById('role-pill');
-  pill.textContent = 'الدور: ' + (r==='admin'?'مدير':(r==='delegate'?'مفوّض':'قارئ'));
-}
-function nav(hash){ location.hash = hash; }
-
-/* ====== الصفحة الرئيسية ====== */
+function nav(hash){location.hash=hash;}
 function renderHome(){
-  const box = document.getElementById('home-partners'); box.innerHTML='';
+  const box=document.getElementById('home-partners'); box.innerHTML='';
   partners.filter(p=>p.type==='strategic').forEach(p=>{
     const a=document.createElement('a'); a.href=p.url; a.target='_blank'; a.rel='noopener';
-    const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.style.height='40px';
+    const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.style.height='40px'; img.onerror=()=>{a.textContent=p.name;};
     a.appendChild(img); box.appendChild(a);
   });
-
   const ctx=document.getElementById('kpiChart');
   if(ctx && !ctx._drawn){
-    new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[
-      {label:'مبادرات',data:[12,19,23,31]},
-      {label:'متطوعون',data:[220,340,480,660]},
-    ]},options:{plugins:{legend:{position:'bottom'}}}});
+    new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'مبادرات',data:[12,19,23,31]},{label:'متطوعون',data:[220,340,480,660]}]},options:{plugins:{legend:{position:'bottom'}}}});
     ctx._drawn=true;
   }
 }
-
-/* ====== الشركاء ====== */
 function renderPartners(){
-  const G=document.getElementById('partners-grid');
-  const C=document.getElementById('partners-consult');
-  G.innerHTML=''; C.innerHTML='';
-  partners.filter(p=>p.type==='strategic').forEach(p=>{
-    const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener';
-    const img=document.createElement('img'); img.src=p.img; img.alt=p.name; a.appendChild(img); G.appendChild(a);
-  });
-  partners.filter(p=>p.type==='consultant').forEach(p=>{
-    const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener';
-    const img=document.createElement('img'); img.src=p.img; img.alt=p.name; a.appendChild(img); C.appendChild(a);
-  });
+  const G=document.getElementById('partners-grid'); const C=document.getElementById('partners-consult'); G.innerHTML=''; C.innerHTML='';
+  partners.filter(p=>p.type==='strategic').forEach(p=>{const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); G.appendChild(a);});
+  partners.filter(p=>p.type==='consultant').forEach(p=>{const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); C.appendChild(a);});
 }
-
-/* ====== سوق المرافق ====== */
 let mapObj=null, markers=[];
-function renderFacilityMarket(){
-  if(!mapObj){
-    mapObj = L.map('map').setView([23.8859,45.0792],5);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mapObj);
-  }
-  drawFacilities(FACILITIES);
-}
+function renderFacilityMarket(){ if(!mapObj){ mapObj=L.map('map').setView([23.8859,45.0792],5); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mapObj);} drawFacilities(FACILITIES);}
 function drawFacilities(list){
-  const wrap=document.getElementById('fac-cards'); wrap.innerHTML='';
-  markers.forEach(m=>mapObj.removeLayer(m)); markers=[];
-  list.forEach(x=>{
-    const card=document.createElement('div'); card.className='card';
-    card.innerHTML = `
-      <img src="${x.img}" style="width:100%;height:180px;object-fit:cover;border-radius:8px">
-      <h3>${x.name}</h3>
-      <div class="kpi"><span class="num">${x.cap}</span><span class="lbl">مقعد</span></div>
-      <div class="muted">${x.city} — ${x.price.toLocaleString()} ر.س</div>
-      <div class="toolbar"><button class="btn" onclick="alert('تم إرسال طلب الحجز')">طلب حجز</button></div>`;
-    wrap.appendChild(card);
-    const mk=L.marker([x.lat,x.lng]).addTo(mapObj).bindPopup(`<b>${x.name}</b><br>${x.city}`);
-    markers.push(mk);
-  });
+  const wrap=document.getElementById('fac-cards'); wrap.innerHTML=''; markers.forEach(m=>mapObj.removeLayer(m)); markers=[];
+  list.forEach(x=>{const card=document.createElement('div'); card.className='card';
+    card.innerHTML=`<img src="${x.img}" style="width:100%;height:180px;object-fit:cover;border-radius:8px"><h3>${x.name}</h3><div class="kpi"><span class="num">${x.cap}</span><span class="lbl">مقعد</span></div><div class="muted">${x.city} — ${x.price.toLocaleString()} ر.س</div><div class="toolbar"><button class="btn" onclick="alert('تم إرسال طلب الحجز')">طلب حجز</button></div>`;
+    wrap.appendChild(card); const mk=L.marker([x.lat,x.lng]).addTo(mapObj).bindPopup(`<b>${x.name}</b><br>${x.city}`); markers.push(mk);});
 }
-function filterFacilities(){
-  const q=(document.getElementById('q-fac').value||'').toLowerCase();
-  drawFacilities(FACILITIES.filter(d=>(d.name+d.city).toLowerCase().includes(q)));
-}
-function exportFacilities(){
-  const rows=[['الاسم','المدينة','السعة','السعر','lat','lng'], ...FACILITIES.map(d=>[d.name,d.city,d.cap,d.price,d.lat,d.lng])];
-  const csv=rows.map(r=>r.join(',')).join('\n');
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='facilities.csv'; a.click();
-}
-
-/* ====== التقارير ====== */
-function renderReports(){
-  const ctx=document.getElementById('repChart');
-  if(ctx && !ctx._done){
-    new Chart(ctx,{type:'bar',data:{labels:['مبادرات','شراكات','متطوعون'],datasets:[{label:'قيم',data:[31,18,660]}]},options:{plugins:{legend:{position:'bottom'}}}});
-    ctx._done=true;
-  }
-}
-function exportReport(){ exportTableCSV('tbl-report','reports.csv'); }
-
-/* ====== الوظائف ====== */
-function renderJobs(){
-  const sector=document.getElementById('jobs-sector').value;
-  const tbody=document.querySelector('#tbl-jobs tbody'); tbody.innerHTML='';
-  JOBS.filter(r=>!sector||r.sector===sector).forEach(r=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${r.title}</td><td>${r.sector}</td><td>${r.type}</td><td>${r.skills}</td><td>${r.city}</td><td><button class="btn">تقديم</button></td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-/* ====== مواءمة 6/27/96 ====== */
-function renderAlignment(){
-  const s6=document.getElementById('v6'), s27=document.getElementById('v27'), s96=document.getElementById('v96');
-  s6.innerHTML  = V6.map(x=>`<option>${x}</option>`).join('');
-  s27.innerHTML = V27.map(x=>`<option>${x}</option>`).join('');
-  s96.innerHTML = V96.map(x=>`<option>${x}</option>`).join('');
-}
-function exportAlignment(){
-  const s6=v6.options[v6.selectedIndex].text; const s27=v27.options[v27.selectedIndex].text; const s96=v96.options[v96.selectedIndex].text;
-  const csv = "Strategic,Sub,Detail\n"+[s6,s27,s96].join(',');
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='alignment.csv'; a.click();
-}
-
-/* ====== حسابات (شاشات) ====== */
+function filterFacilities(){const q=(document.getElementById('q-fac').value||'').toLowerCase(); drawFacilities(FACILITIES.filter(d=>(d.name+d.city).toLowerCase().includes(q)));}
+function exportFacilities(){const rows=[['الاسم','المدينة','السعة','السعر','lat','lng'],...FACILITIES.map(d=>[d.name,d.city,d.cap,d.price,d.lat,d.lng])]; const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='facilities.csv'; a.click();}
+function renderReports(){const ctx=document.getElementById('repChart'); if(ctx && !ctx._done){new Chart(ctx,{type:'bar',data:{labels:['مبادرات','شراكات','متطوعون'],datasets:[{label:'قيم',data:[31,18,660]}]},options:{plugins:{legend:{position:'bottom'}}}}); ctx._done=true;}}
+function exportReport(){exportTableCSV('tbl-report','reports.csv');}
+function renderJobs(){const sector=document.getElementById('jobs-sector').value; const tbody=document.querySelector('#tbl-jobs tbody'); tbody.innerHTML=''; JOBS.filter(r=>!sector||r.sector===sector).forEach(r=>{const tr=document.createElement('tr'); tr.innerHTML=`<td>${r.title}</td><td>${r.sector}</td><td>${r.type}</td><td>${r.skills}</td><td>${r.city}</td><td><button class="btn">تقديم</button></td>`; tbody.appendChild(tr);});}
+function renderAlignment(){v6.innerHTML=V6.map(x=>`<option>${x}</option>`).join(''); v27.innerHTML=V27.map(x=>`<option>${x}</option>`).join(''); v96.innerHTML=V96.map(x=>`<option>${x}</option>`).join('');}
+function exportAlignment(){const s6=v6.options[v6.selectedIndex].text; const s27=v27.options[v27.selectedIndex].text; const s96=v96.options[v96.selectedIndex].text; const csv="Strategic,Sub,Detail\n"+[s6,s27,s96].join(','); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='alignment.csv'; a.click();}
 function renderAccount(kind){
   const wrap=document.getElementById('account-wrap');
-  const tabsByKind = {
-    individual: [
-      ["الوظائف","#/jobs"],["الفعاليات والمحافل","#/events"],["التطوع/التدريب","#/incubators"],
-      ["الاستشارات","#/consultations"],["سوق المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]
-    ],
-    university: [
-      ["التدريب التعاوني","#/jobs"],["الأبحاث/الاستشارات","#/consultations"],["المدربون/المتحدثون","#/events"],
-      ["المرافق","#/facility-market"],["حاضنات/مسرعات","#/incubators"],["الاشتراكات","#/subscriptions"]
-    ],
-    private: [
-      ["حلول وتحديات","#/consultations"],["التوظيف","#/jobs"],["التدريب/تعاوني","#/jobs"],
-      ["المرافق","#/facility-market"],["الفعاليات","#/events"],["الاشتراكات","#/subscriptions"]
-    ],
-    nonprofit: [
-      ["المشاريع/المبادرات","#/consultations"],["التوظيف","#/jobs"],["التطوع","#/events"],
-      ["التدريب التعاوني","#/jobs"],["المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]
-    ],
-    government: [
-      ["طلب حلول","#/consultations"],["التوظيف (داخلي/إحالة)","#/jobs"],["الفعاليات","#/events"],
-      ["المرافق","#/facility-market"],["التقارير","#/reports"],["الاشتراكات","#/subscriptions"]
-    ],
-    emirate: [
-      ["خريطة مشاريع المنطقة","#/reports"],["المحافل والموافقات","#/events"],["المسح الأمني للمتحدثين","#/consultations"],
-      ["المرافق","#/facility-market"],["التوظيف المؤقت","#/jobs"],["الاشتراكات","#/subscriptions"]
-    ],
-    donor: [
-      ["معايير التمويل","#/consultations"],["فرص تمويل مخصصة","#/incubators"],["متابعة الأثر","#/reports"],["الاشتراكات","#/subscriptions"]
-    ]
-  };
-  const nameByKind = {
-    individual:"حساب الأفراد", university:"حساب الجامعات", private:"حساب القطاع الخاص",
-    nonprofit:"حساب القطاع غير الربحي", government:"حساب الجهات الحكومية",
-    emirate:"حساب الإمارة", donor:"حساب المانح/التمويلي"
-  };
-  const tabs = tabsByKind[kind]||[];
-  const title = nameByKind[kind]||"حساب";
-  wrap.innerHTML = `
-    <h2>${title} <span class="role-pill">الدور: ${(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ'))}</span></h2>
-    <div class="toolbar">${tabs.map(t=>`<a class="btn" href="${t[1]}">${t[0]}</a>`).join('')}</div>
-    <div class="card" style="margin-top:8px"><b>ملاحظة:</b> هذه نسخة عرض — النماذج تعمل وظيفيًا (بحث/فرز/CSV/خريطة/تقديم)، ويمكن توسيع الحقول بحسب كل حساب.</div>
-  `;
+  const tabsByKind={individual:[["الوظائف","#/jobs"],["الفعاليات والمحافل","#/events"],["التطوع/التدريب","#/incubators"],["الاستشارات","#/consultations"],["سوق المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
+  university:[["التدريب التعاوني","#/jobs"],["الأبحاث/الاستشارات","#/consultations"],["المدربون/المتحدثون","#/events"],["المرافق","#/facility-market"],["حاضنات/مسرعات","#/incubators"],["الاشتراكات","#/subscriptions"]],
+  private:[["حلول وتحديات","#/consultations"],["التوظيف","#/jobs"],["التدريب/تعاوني","#/jobs"],["المرافق","#/facility-market"],["الفعاليات","#/events"],["الاشتراكات","#/subscriptions"]],
+  nonprofit:[["المشاريع/المبادرات","#/consultations"],["التوظيف","#/jobs"],["التطوع","#/events"],["التدريب التعاوني","#/jobs"],["المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
+  government:[["طلب حلول","#/consultations"],["التوظيف (داخلي/إحالة)","#/jobs"],["الفعاليات","#/events"],["المرافق","#/facility-market"],["التقارير","#/reports"],["الاشتراكات","#/subscriptions"]],
+  emirate:[["خريطة مشاريع المنطقة","#/reports"],["المحافل والموافقات","#/events"],["المسح الأمني للمتحدثين","#/consultations"],["المرافق","#/facility-market"],["التوظيف المؤقت","#/jobs"],["الاشتراكات","#/subscriptions"]],
+  donor:[["معايير التمويل","#/consultations"],["فرص تمويل مخصصة","#/incubators"],["متابعة الأثر","#/reports"],["الاشتراكات","#/subscriptions"]]};
+  const nameByKind={individual:"حساب الأفراد",university:"حساب الجامعات",private:"حساب القطاع الخاص",nonprofit:"حساب القطاع غير الربحي",government:"حساب الجهات الحكومية",emirate:"حساب الإمارة",donor:"حساب المانح/التمويلي"};
+  const tabs=tabsByKind[kind]||[]; const title=nameByKind[kind]||"حساب";
+  wrap.innerHTML=`<h2>${title} <span class="role-pill">الدور: ${(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ'))}</span></h2><div class="toolbar">${tabs.map(t=>`<a class="btn" href="${t[1]}">${t[0]}</a>`).join('')}</div><div class="card" style="margin-top:8px"><b>ملاحظة:</b> نسخة عرض — النماذج تعمل (بحث/فرز/CSV/خريطة/تقديم)، ويمكن توسيع الحقول لكل حساب.</div>`;
 }
-
-/* ====== الملاحية (Router) ====== */
-function show(viewId){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(viewId).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+function show(viewId){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById(viewId).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});}
 function route(){
   const h=(location.hash||'#/').split('?')[0];
-  if(h==='#/' || h==='#') { show('view-home'); renderHome(); return; }
-  if(h==='#/partners'){ show('view-partners'); renderPartners(); return; }
-  if(h==='#/facility-market'){ show('view-facility-market'); renderFacilityMarket(); return; }
-  if(h==='#/reports'){ show('view-reports'); renderReports(); return; }
-  if(h==='#/consultations'){ show('view-consultations'); return; }
-  if(h==='#/incubators'){ show('view-incubators'); return; }
-  if(h==='#/jobs'){ show('view-jobs'); renderJobs(); return; }
-  if(h==='#/subscriptions'){ show('view-subscriptions'); return; }
-  if(h==='#/alignment'){ show('view-alignment'); renderAlignment(); return; }
-  const m=h.match(/^#\/account\/([a-z]+)/);
-  if(m){ show('view-account'); renderAccount(m[1]); return; }
+  if(h==='#/'||h==='#'){show('view-home'); renderHome(); return;}
+  if(h==='#/partners'){show('view-partners'); renderPartners(); return;}
+  if(h==='#/facility-market'){show('view-facility-market'); renderFacilityMarket(); return;}
+  if(h==='#/reports'){show('view-reports'); renderReports(); return;}
+  if(h==='#/consultations'){show('view-consultations'); return;}
+  if(h==='#/incubators'){show('view-incubators'); return;}
+  if(h==='#/jobs'){show('view-jobs'); renderJobs(); return;}
+  if(h==='#/subscriptions'){show('view-subscriptions'); return;}
+  if(h==='#/alignment'){show('view-alignment'); renderAlignment(); return;}
+  const m=h.match(/^#\/account\/([a-z]+)/); if(m){show('view-account'); renderAccount(m[1]); return;}
   show('view-home'); renderHome();
 }
-
-/* ====== بدء التشغيل ====== */
-function init(){
-  setLogos();
-  document.getElementById('role-pill').textContent = 'الدور: ' + (role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ'));
-  route();
-  window.addEventListener('hashchange', route);
-  // رسم بسيط أعلى الرئيسية
-  const ctx=document.getElementById('kpiChart');
-  if(ctx){
-    new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[
-      {label:'مبادرات',data:[12,19,23,31]},
-      {label:'متطوعون',data:[220,340,480,660]},
-    ]},options:{plugins:{legend:{position:'bottom'}}}});
-  }
+function init(){setLogos(); document.getElementById('role-pill').textContent='الدور: '+(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ')); route(); window.addEventListener('hashchange',route);
+  const ctx=document.getElementById('kpiChart'); if(ctx){new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'مبادرات',data:[12,19,23,31]},{label:'متطوعون',data:[220,340,480,660]}]},options:{plugins:{legend:{position:'bottom'}}}});}
 }
 init();
 </script>
