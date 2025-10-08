@@ -1,182 +1,325 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>منصة حصيف — العرض الوطني الأولي</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>منصة حصيف — النموذج الأولي (ملف واحد)</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{
-  --green:#15803d; --gold:#d4a017; --ink:#0f172a; --line:#e5e7eb; --soft:#f8fafc;
-}
-*{box-sizing:border-box}
-body{font-family:'Cairo',system-ui; background:#fff; color:#0f172a}
-.container{max-width:1200px;margin-inline:auto;padding:20px}
-.badge{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--line)}
-/* Header logos */
-.header-logos{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.header-logos .logo-box{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px;min-height:58px}
-.header-logos img{max-height:40px;object-fit:contain}
-/* Inline temp SVG logos for Hasseef & Talbiya (auto-switch to PNG if present) */
-.logo-temp{display:inline-flex;align-items:center;justify-content:center;width:120px;height:40px;border-radius:8px;border:1px dashed #d1d5db;background:#fff}
-.logo-temp svg{height:28px}
-/* Partners grid */
-.partners-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+:root{--green:#1f7a3f;--gold:#d4af37;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f7faf7}
+*{box-sizing:border-box}html{direction:rtl}body{margin:0;font-family:'Tajawal',system-ui; color:var(--ink);background:var(--bg)}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:10px;align-items:center}
+.logo-temp{display:inline-flex;align-items:center;justify-content:center;width:120px;height:44px;border:1px dashed #d1d5db;border-radius:8px;background:#fff}
+.logo-temp svg{height:30px}
+.badge{background:#fff;border:1px solid var(--line);padding:3px 8px;border-radius:999px;font-size:12px;color:#475569}
+.top-logos{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.top-logos img{height:36px;object-fit:contain}
+nav a{color:var(--green);text-decoration:none}
+.hero{position:relative}
+.hero .img{height:300px;background:linear-gradient(135deg,#0b3b20,#1f7a3f)}
+.hero .text{position:absolute;inset-inline:0;bottom:0;color:#fff}
+.hero h2{font-size:28px;margin:0 0 6px}
+.btn{background:var(--green);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+.btn.secondary{background:#fff;color:var(--green);border:1px solid var(--green)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.grid{display:grid;gap:14px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+.section-title{font-weight:800;margin:0 0 8px}
+.table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:right}
+.toolbar{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.input,select,textarea{border:1px solid var(--line);border-radius:8px;padding:8px;width:100%}
+.kpis{display:flex;gap:12px;flex-wrap:wrap}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi .n{font-weight:800;font-size:20px}
+.view{display:none}.view.active{display:block}
+.partners-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
 @media(max-width:1200px){.partners-grid{grid-template-columns:repeat(5,1fr)}}
 @media(max-width:900px){.partners-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.partners-grid{grid-template-columns:repeat(2,1fr)}}
-.p-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:center;min-height:96px}
-.p-card picture,img{max-width:100%;height:auto;max-height:56px;object-fit:contain}
-.p-card:hover{border-color:var(--green)}
-.section-title{display:flex;align-items:center;gap:10px;margin:32px 0 14px}
-.section-title h2{font-weight:800;font-size:20px}
-.rule{flex:1;height:1px;background:var(--line)}
-.footer-note{color:#475569}
+.p-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:96px}
+.p-card img{max-width:100%;max-height:56px;object-fit:contain}
+#map{width:100%;height:360px;border:1px solid var(--line);border-radius:12px}
+.sidenav{display:flex;gap:8px;flex-wrap:wrap}
+.sidenav a{border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff}
+.sidenav a.active{border-color:var(--green);color:var(--green)}
+.footer{padding:20px;border-top:1px solid var(--line);background:#fff;color:#475569;text-align:center}
+.small{font-size:12px;color:#64748b}
+.hidden{display:none}
 </style>
-</head>
-<body>
+</head><body>
 
-<!-- ======= Top bar ======= -->
-<header class="border-b border-[var(--line)]">
-  <div class="container flex items-center justify-between gap-4">
-    <!-- Left: Hasseef logo (temp inline, auto-swap if hasseef.png exists) -->
-    <a href="#" class="flex items-center gap-3">
-      <span id="hasseefSlot" class="logo-temp" title="حصيف">
-        <!-- أنيق مؤقت -->
-        <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" aria-label="HASSEEF">
-          <path d="M30 45 C50 10, 80 10, 100 45" fill="none" stroke="#d4a017" stroke-width="8" stroke-linecap="round"/>
-          <path d="M60 45 C80 10, 120 10, 150 45" fill="none" stroke="#15803d" stroke-width="8" stroke-linecap="round"/>
-          <text x="100" y="55" text-anchor="middle" font-size="16" fill="#111827" font-weight="700">حصيف HASSEEF</text>
+<!-- ========= Header ========= -->
+<header class="header">
+  <div class="container row">
+    <a href="#/" class="brand" title="حصيف">
+      <span id="hasseefSlot" class="logo-temp">
+        <!-- شعار حصيف مؤقت (يستبدل تلقائيًا إذا وُجد hasseef.png) -->
+        <svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" aria-label="Hasseef">
+          <path d="M30 45 C50 10, 80 10, 100 45" fill="none" stroke="#d4af37" stroke-width="8" stroke-linecap="round"/>
+          <path d="M60 45 C80 10, 120 10, 150 45" fill="none" stroke="#1f7a3f" stroke-width="8" stroke-linecap="round"/>
+          <text x="110" y="55" text-anchor="middle" font-size="16" fill="#111827" font-weight="700">حصيف HASSEEF</text>
         </svg>
       </span>
-      <div class="flex flex-col">
-        <strong class="text-lg">منصة حصيف</strong>
-        <span class="text-sm text-slate-500">منصة وطنية للتكامل التنموي</span>
+      <div>
+        <div class="section-title" style="color:var(--green)">منصة حصيف</div>
+        <div class="small">النظام الوطني للتكامل التنموي</div>
       </div>
     </a>
 
-    <!-- Right: Vision 2030 + Talbiya + SNB (sponsor) -->
-    <div class="header-logos">
-      <div class="logo-box" title="رؤية 2030">
-        <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg?v=1" alt="Vision 2030">
-      </div>
-      <div class="logo-box" title="مبادرة تلبية">
-        <span id="talbiyaSlot" class="logo-temp">
-          <!-- مؤقت -->
-          <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg" aria-label="Talbiya Initiative">
-            <polygon points="15,45 30,20 45,45" fill="#16a34a"/><polygon points="55,45 70,20 85,45" fill="#22c55e"/>
-            <text x="120" y="42" text-anchor="middle" font-size="18" fill="#0f5132" font-weight="700">مبادرة تلبية</text>
-          </svg>
-        </span>
-      </div>
+    <div class="top-logos">
+      <!-- رؤية 2030 -->
+      <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg?v=1" alt="Vision 2030">
+      <!-- مبادرة تلبية (يستبدَل لاحقًا إن وُجد talbiya.png) -->
+      <span id="talbiyaSlot" class="logo-temp" title="مبادرة تلبية">
+        <svg viewBox="0 0 240 60" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="15,45 30,20 45,45" fill="#16a34a"/><polygon points="55,45 70,20 85,45" fill="#22c55e"/>
+          <text x="120" y="42" text-anchor="middle" font-size="18" fill="#0f5132" font-weight="700">مبادرة تلبية</text>
+        </svg>
+      </span>
       <span class="badge">الراعي الرسمي</span>
-      <div class="logo-box" title="البنك الأهلي السعودي SNB">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg?v=1" alt="SNB">
-      </div>
+      <!-- البنك الأهلي (SNB) -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg?v=2" alt="SNB">
     </div>
   </div>
 </header>
 
-<main class="container">
-  <!-- Intro -->
-  <section class="mt-6">
-    <h1 class="text-2xl font-extrabold mb-2">التكامل بين القطاعات نحو مستهدفات رؤية 2030</h1>
-    <p class="text-slate-600 leading-7">
-      هذا نموذج أولي عالي المستوى يركّز على إبراز الشركاء والاستدامة والحوكمة.
-      تم ضبط الشعارات لتظهر فورًا على كل الشاشات، ويمكن استبدال شعارَيْ حصيف وتلبية الفعليين تلقائيًا عند وضع
-      <code>hasseef.png</code> و <code>talbiya.png</code> بجوار هذا الملف.
-    </p>
-  </section>
-
-  <!-- Partners -->
-  <section class="mt-8">
-    <div class="section-title"><h2>الشركاء الاستراتيجيون</h2><span class="rule"></span></div>
-    <div id="partners-grid" class="partners-grid"></div>
-
-    <div class="section-title mt-6"><h2>الشريك الاستشاري والراعي الرسمي</h2><span class="rule"></span></div>
-    <div id="partners-consult" class="grid md:grid-cols-2 gap-3"></div>
-    <p class="mt-3 text-sm footer-note">تم ترتيب الشعارات ومواءمتها تلقائيًا، وإذا تعطل رابط شعار فسيظهر اسم الجهة بدلًا منه.</p>
-  </section>
-</main>
-
-<footer class="mt-10 border-t border-[var(--line)]">
-  <div class="container py-6 text-slate-600 text-sm">
-    © منصة حصيف — نموذج وطني أولي.
+<!-- ========= Home ========= -->
+<section id="view-home" class="view active">
+  <div class="hero">
+    <div class="img"></div>
+    <div class="text">
+      <div class="container">
+        <h2>تكامل حكومي • خاص • غير ربحي • جامعات • إمارات • مانحون • أفراد</h2>
+        <div class="small">طرح التحديات والحلول والتمويل والتنفيذ والمتابعة وقياس الأثر — في مكان واحد.</div>
+        <div style="margin:10px 0;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn" href="#/account?type=government">جهة حكومية</a>
+          <a class="btn secondary" href="#/account?type=emirate">الإمارة</a>
+          <a class="btn secondary" href="#/account?type=private">قطاع خاص</a>
+          <a class="btn secondary" href="#/account?type=nonprofit">غير ربحي</a>
+          <a class="btn secondary" href="#/account?type=university">جامعة</a>
+          <a class="btn secondary" href="#/account?type=donor">مانح/تمويلي</a>
+          <a class="btn secondary" href="#/account?type=individual">الأفراد</a>
+        </div>
+      </div>
+    </div>
   </div>
-</footer>
+
+  <div class="container" style="margin-top:16px">
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="section-title">لماذا حصيف؟</div>
+        <ul class="small" style="line-height:1.9">
+          <li>تحويل التحديات إلى فرص ممولة ومنفذة بشفافية وتقارير أثر.</li>
+          <li>ربط المبادرات بـ 6/27/96 من أهداف رؤية 2030 + SDGs.</li>
+          <li>سوق مرافق وفعاليات ومتحدثون ومدربون بإدارة كاملة.</li>
+          <li>باقات واضحة لكل فئة + تجربة مجانية.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="section-title">مؤشرات مباشرة</div>
+        <canvas id="homeChart" height="120"></canvas>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="section-title">الشركاء الاستراتيجيون <span class="small">(* “أداء” أولاً)</span></div>
+      <div id="partners-grid" class="partners-grid"></div>
+      <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+        <span class="small">الشريك الاستشاري:</span>
+        <span class="logo-temp" title="شركة تلبية للبحث والتطوير" style="height:34px;width:auto;padding:0 8px">
+          <svg viewBox="0 0 300 60" xmlns="http://www.w3.org/2000/svg"><text x="6" y="42" font-size="20" font-weight="700" fill="#1f7a3f">شركة تلبية للبحث والتطوير</text></svg>
+        </span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="section-title">الدعم الفني والتواصل</div>
+      <div class="grid grid-3">
+        <input class="input" placeholder="الاسم">
+        <input class="input" placeholder="البريد الإلكتروني">
+        <select class="input"><option>نوع الطلب: استفسار</option><option>بلاغ فني</option><option>اقتراح</option></select>
+      </div>
+      <textarea class="input" rows="4" placeholder="التفاصيل…"></textarea>
+      <div class="toolbar"><button class="btn">إرسال تذكرة</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= Account (All types) ========= -->
+<section id="view-account" class="view">
+  <div class="container">
+    <a href="#/" class="small">← رجوع للرئيسية</a>
+    <div class="row" style="margin-top:6px">
+      <div class="brand">
+        <span class="logo-temp" style="width:100px;height:36px" title="حصيف">
+          <svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 45 C50 10, 80 10, 100 45" fill="none" stroke="#d4af37" stroke-width="8" stroke-linecap="round"/>
+            <path d="M60 45 C80 10, 120 10, 150 45" fill="none" stroke="#1f7a3f" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <div id="acc-title" class="section-title" style="color:var(--green)">حساب</div>
+          <div id="acc-sub" class="small">لوحة خدمات — <span id="year"></span></div>
+        </div>
+      </div>
+      <div class="sidenav" id="acc-actions">
+        <a href="#/pricing" class="">باقات الاشتراك</a>
+        <a href="#/settings" class="">الإعدادات</a>
+        <a href="#/profile" class="">الملف الشخصي</a>
+      </div>
+    </div>
+
+    <div class="sidenav" id="service-tabs" style="margin-top:10px"></div>
+    <div id="service-content" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<!-- ========= Pricing (inline simple) ========= -->
+<section id="view-pricing" class="view">
+  <div class="container">
+    <a href="#/" class="small">← رجوع</a>
+    <div class="section-title" style="margin-top:6px">باقات الاشتراك</div>
+    <div class="grid grid-3">
+      <div class="card"><b>حكومي</b><div class="small">100,000 ﷼/سنة</div><ul class="small"><li>إدارة مشاريع/مرافق/فعاليات</li><li>طلب/استقبال حلول</li><li>ربط 2030 وتقارير أثر</li></ul><button class="btn">ابدأ</button></div>
+      <div class="card"><b>قطاع خاص</b><div class="small">5,000–15,000 ﷼/سنة</div><ul class="small"><li>مسؤولية اجتماعية/رعاية</li><li>وظائف وتدريب</li><li>سوق مرافق</li></ul><button class="btn">ابدأ</button></div>
+      <div class="card"><b>غير ربحي/جامعات/أفراد</b><div class="small">10,000/20,000/25 ﷼</div><ul class="small"><li>مشاريع ممولة</li><li>تطوع/توظيف/تدريب</li><li>SDGs & 2030</li></ul><button class="btn">ابدأ</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========= Footer ========= -->
+<footer class="footer">© منصة حصيف — نموذج أولي ملف واحد.</footer>
 
 <script>
-/* ==== Auto replace temp inline with PNG if exists (no code change needed later) ==== */
-function trySwap(id, file){
-  fetch(file,{method:'HEAD'}).then(r=>{
-    if(r.ok){
-      const slot=document.getElementById(id);
-      const img=new Image(); img.alt=file; img.src=file+'?v='+Date.now(); img.style.maxHeight='40px';
-      slot.replaceWith(img);
-    }
-  }).catch(()=>{});
-}
-trySwap('hasseefSlot','./hasseef.png');   // ضع hasseef.png بجانب index.html إن رغبت
-trySwap('talbiyaSlot','./talbiya.png');   // ضع talbiya.png بجانب index.html إن رغبت
+// ===== Swap inline logos if external PNGs exist =====
+function trySwap(id,file){fetch(file,{method:'HEAD'}).then(r=>{if(r.ok){const slot=document.getElementById(id);const img=new Image();img.src=file+'?v='+Date.now();img.style.height='36px';slot.replaceWith(img);}}).catch(()=>{});}
+trySwap('hasseefSlot','./hasseef.png'); trySwap('talbiyaSlot','./talbiya.png');
 
-/* ==== Partners data (Adaa first) ==== */
-const partners = [
-  {name:"أداء (المركز الوطني لقياس أداء الأجهزة العامة)", 
-   url:"https://adaa.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Adaa_logo_ar.svg"},
+// ===== Simple chart =====
+(function(){const c=document.getElementById('homeChart'); if(!c) return;
+new Chart(c,{type:'bar',data:{labels:['مشاريع','حلول','فعاليات','مرافق','وظائف','تطوع'],datasets:[{data:[18,26,14,37,22,31],backgroundColor:'#1f7a3f'}]},options:{plugins:{legend:{display:false}},responsive:true}})})();
 
-  {name:"وزارة التعليم", url:"https://moe.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/7/79/Ministry_of_Education_%28Saudi_Arabia%29_Logo.svg"},
-
-  {name:"المؤسسة العامة للتدريب التقني والمهني (TVTC)", url:"https://tvtc.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/1/14/TVTC_KSA_Logo.svg"},
-
-  {name:"وزارة التجارة", url:"https://mc.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/6/65/Ministry_of_Commerce_Saudi_Arabia_Logo.svg"},
-
-  {name:"هيئة تنمية البحث والتطوير والابتكار (RDIA)", url:"https://www.rdia.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/8/8f/RDIA_KSA_logo.svg"},
-
-  {name:"وزارة الموارد البشرية والتنمية الاجتماعية", url:"https://www.hrsd.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/7/7c/MHRSD_Saudi_Logo.svg"},
-
-  {name:"منشآت", url:"https://monshaat.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/2/24/Monsha%27at_Logo.svg"},
-
-  {name:"المركز الوطني لتنمية القطاع غير الربحي (NCNP)", url:"https://ncnp.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/National_Center_for_Non-Profit_Sector_logo.svg"},
-
-  {name:"صندوق التنمية الوطني (NDF)", url:"https://ndf.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/4/4d/National_Development_Fund_logo.svg"},
-
-  {name:"هيئة تطوير منطقة عسير", url:"https://asda.gov.sa",
-   img:"https://upload.wikimedia.org/wikipedia/commons/2/2a/Aseer_Development_Authority_logo.svg"}
+// ===== Partners (Adaa first) =====
+const partners=[ // مصادر عامة مستقرة
+  {n:"أداء",u:"https://adaa.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Adaa_logo_ar.svg"},
+  {n:"وزارة التعليم",u:"https://moe.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/7/79/Ministry_of_Education_%28Saudi_Arabia%29_Logo.svg"},
+  {n:"TVTC",u:"https://tvtc.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/1/14/TVTC_KSA_Logo.svg"},
+  {n:"وزارة التجارة",u:"https://mc.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/6/65/Ministry_of_Commerce_Saudi_Arabia_Logo.svg"},
+  {n:"RDIA",u:"https://www.rdia.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/8/8f/RDIA_KSA_logo.svg"},
+  {n:"الموارد البشرية",u:"https://www.hrsd.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/7/7c/MHRSD_Saudi_Logo.svg"},
+  {n:"منشآت",u:"https://monshaat.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/2/24/Monsha%27at_Logo.svg"},
+  {n:"NCNP",u:"https://ncnp.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/0/0f/National_Center_for_Non-Profit_Sector_logo.svg"},
+  {n:"NDF",u:"https://ndf.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/4/4d/National_Development_Fund_logo.svg"},
+  {n:"هيئة تطوير عسير",u:"https://asda.gov.sa",i:"https://upload.wikimedia.org/wikipedia/commons/2/2a/Aseer_Development_Authority_logo.svg"}
 ];
+(function(){const g=document.getElementById('partners-grid'); if(!g) return;
+partners.forEach(p=>{const a=document.createElement('a');a.className='p-card';a.href=p.u;a.target='_blank';a.rel='noopener';
+const img=new Image();img.loading='lazy';img.alt=p.n;img.src=p.i+(p.i.includes('?')?'&':'?')+'v='+Date.now();img.onerror=()=>{a.textContent=p.n;a.style.padding='18px'};a.appendChild(img);g.appendChild(a);});})();
 
-const consultAndSponsor = [
-  {name:"الشريك الاستشاري — شركة تلبية للبحث والتطوير", url:"#",
-   img:"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='340' height='70'><text x='0' y='45' font-family='Cairo' font-weight='700' font-size='28' fill='%231f7a4d'>شركة تلبية للبحث والتطوير</text></svg>"},
-  {name:"الراعي الرسمي — البنك الأهلي السعودي (SNB)", url:"https://www.alahli.com",
-   img:"https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg"}
-];
+// ===== Router =====
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function route(){const h=(location.hash||'#/').split('?')[0]; const qs=new URLSearchParams(location.hash.split('?')[1]||'');
+if(h==='#/'||h==='#'){show('view-home');return;}
+if(h==='#/pricing'){show('view-pricing');return;}
+if(h==='#/account'){show('view-account'); renderAccount(qs.get('type')||'individual');return;}
+show('view-home');}
+window.addEventListener('hashchange',route); route();
 
-function renderPartners(){
-  const G=document.getElementById('partners-grid');
-  const C=document.getElementById('partners-consult');
-  const make = (p)=>{
-    const a=document.createElement('a');
-    a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener';
-    const img=new Image(); img.loading='lazy'; img.alt=p.name;
-    img.src=p.img+(p.img.includes('?')?'&':'?')+'v='+Date.now();
-    img.onerror=()=>{ a.textContent=p.name; a.style.padding='18px'; };
-    a.appendChild(img); return a;
-  };
-  partners.forEach(p=>G.appendChild(make(p)));
-  consultAndSponsor.forEach(p=>C.appendChild(make(p)));
+// ===== Account =====
+const servicesByType={
+  individual:['الوظائف','التدريب','التطوع','المبادرات/2030','الفعاليات','الاستثمار','المحفظة','الاستشارات'],
+  private:['المسؤولية الاجتماعية','المشاريع/الاستثمار','الحلول','التوظيف','التدريب','المرافق','المحفظة','الاستشارات','حاضنات/مسرّعات'],
+  nonprofit:['المشاريع','الحلول','التوظيف','التطوع','التدريب','المرافق','المحفظة','التبرعات','الاستشارات'],
+  government:['الفعاليات','المتحدثون','المرافق','المشاريع','الحلول (طلب/استقبال)','التوظيف','التدريب','التطوع','المحفظة','مواءمة 2030/أداء'],
+  emirate:['التخطيط الاجتماعي','المتحدثون/المحافل + المسح الأمني','الحلول','المشاريع والمبادرات','طلب رعاية أمير المنطقة','إشعارات ومؤشرات','المحفظة'],
+  university:['الاستشارات العلمية','الأبحاث','التدريب التعاوني','الشراكات','الفعاليات','المتحدثون','التطوع','المحفظة','التوظيف'],
+  donor:['معايير المنح/التمويل','طلبات التمويل الواردة','مشاريع ممولة','المحفظة','التقارير']
+};
+function mapTypeName(t){return{individual:'الأفراد',private:'القطاع الخاص',nonprofit:'القطاع غير الربحي',government:'القطاع الحكومي',emirate:'الإمارة',university:'الجامعة',donor:'الجهة المانحة/التمويلية'}[t]||t;}
+function renderAccount(type){
+  document.getElementById('year').textContent=new Date().getFullYear();
+  document.getElementById('acc-title').textContent='حساب '+mapTypeName(type);
+  document.getElementById('acc-sub').textContent='لوحة خدمات — '+new Date().getFullYear();
+  const tabs=document.getElementById('service-tabs'); tabs.innerHTML='';
+  const svc=servicesByType[type]||[];
+  svc.forEach((s,i)=>{const a=document.createElement('a');a.href="javascript:void(0)";a.textContent=s;a.onclick=()=>renderService(type,s,a); if(i===0) setTimeout(()=>a.click(),0); tabs.appendChild(a);});
 }
-renderPartners();
+function setActive(a){document.querySelectorAll('#service-tabs a').forEach(x=>x.classList.remove('active'));a.classList.add('active');}
+function renderService(type,name,a){setActive(a); const el=document.getElementById('service-content'); el.innerHTML='';
+if(/المرافق/.test(name)) return renderFacilities(el);
+if(/الوظائف/.test(name)) return renderJobs(el);
+if(/الاستشارات/.test(name)) return renderConsulting(el);
+if(/مواءمة/.test(name)||/2030/.test(name)) return renderVision(el);
+if(/الحلول/.test(name)) return renderSolutions(el,type);
+if(/طلب رعاية/.test(name)) return renderEmirateSponsorship(el);
+if(/المتحدثون/.test(name)) return renderSpeakers(el);
+if(/التطوع/.test(name)) return renderVolunteer(el);
+if(/التدريب/.test(name) && !/التعاوني/.test(name)) return renderTraining(el);
+if(/التدريب التعاوني/.test(name)) return renderCoop(el);
+if(/المحفظة/.test(name)) return renderWallet(el);
+if(/المشاريع/.test(name)||/المبادرات/.test(name)) return renderProjects(el);
+if(/التبرعات/.test(name)) return renderDonations(el);
+if(/حاضنات/.test(name)) return renderIncubators(el);
+defaultTable(el,name);}
+function tbar(btns){return `<div class="toolbar">${btns.join('')}</div>`}
+function exportCSV(tableId){const rows=[...document.querySelectorAll(`#${tableId} tr`)].map(tr=>[...tr.children].map(td=>`"${td.innerText.replace(/"/g,'""')}"`).join(','));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'}));a.download='export.csv';a.click();}
+function printPDF(){window.print();}
+
+// ---- Renderers ----
+function renderJobs(el){
+  el.innerHTML=`<div class="card"><div class="section-title">فرص التوظيف</div>
+  ${tbar([`<input id="qj" class="input" placeholder="ابحث بالمسمي/المنطقة" oninput="filterRows('jobsBody',this.value)">`,
+  `<button class="btn secondary" onclick="exportCSV('jobsTbl')">CSV</button>`,
+  `<button class="btn secondary" onclick="printPDF()">PDF</button>`])}
+  <table class="table" id="jobsTbl"><thead><tr><th>المسمى</th><th>الجهة</th><th>المنطقة</th><th>رابط</th></tr></thead><tbody id="jobsBody"></tbody></table></div>`;
+  const rows=[['محلل مشاريع','جمعية بناء','الشرقية','تقديم'],['مدير شراكات','شركة وطنية','الرياض','تقديم'],['منسق فعاليات','جهة حكومية','مكة','تقديم']];
+  const body=document.getElementById('jobsBody'); rows.forEach(r=>body.insertAdjacentHTML('beforeend',`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td><a href="#" class="small" style="color:var(--green)"> ${r[3]}</a></td></tr>`));
+}
+function renderFacilities(el){
+  el.innerHTML=`<div class="grid grid-2"><div class="card"><div id="map"></div></div><div class="card"><div class="section-title">سوق المرافق</div><div id="facCards"></div></div></div>`;
+  const map=L.map('map').setView([24.7136,46.6753],5); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(map);
+  const facs=[{n:'قاعة مؤتمرات — الرياض',lat:24.7,lng:46.67,cap:600,price:'15,000/يوم'},{n:'مركز تدريبي — جدة',lat:21.5,lng:39.2,cap:120,price:'4,000/يوم'},{n:'قاعة فعاليات — أبها',lat:18.22,lng:42.5,cap:300,price:'7,500/يوم'}];
+  facs.forEach(f=>{L.marker([f.lat,f.lng]).addTo(map).bindPopup(f.n);
+    document.getElementById('facCards').insertAdjacentHTML('beforeend',`<div class="kpi"><div class="n">${f.n}</div><div class="small">سعة ${f.cap} — ${f.price}</div><button class="btn" onclick="alert('تم إرسال طلب الحجز')">طلب حجز</button></div>`);});
+}
+function renderConsulting(el){
+  el.innerHTML=`<div class="card"><div class="section-title">الاستشارات</div>
+  ${tbar([`<button class="btn">إنشاء طلب استشارة</button>`,`<button class="btn secondary" onclick="exportCSV('consTbl')">CSV</button>`])}
+  <table class="table" id="consTbl"><thead><tr><th>الجهة</th><th>المجال</th><th>الحالة</th></tr></thead>
+  <tbody><tr><td>جامعة الملك سعود</td><td>سياسات عامة</td><td>قيد المراجعة</td></tr><tr><td>جامعة الملك عبدالعزيز</td><td>حوكمة جمعيات</td><td>مقبول</td></tr></tbody></table></div>`;
+}
+function renderVision(el){
+  el.innerHTML=`<div class="card"><div class="section-title">مواءمة رؤية 2030 / SDGs</div>
+  <div class="grid grid-3"><select id="prog" class="input"><option>برنامج الرؤية</option><option>تحول وطني</option><option>تنمية القدرات البشرية</option><option>جودة الحياة</option></select>
+  <select id="gS" class="input"><option>الهدف الاستراتيجي (6)</option><option>اقتصاد مزدهر</option><option>مجتمع حيوي</option><option>وطن طموح</option><option>بيئة مستدامة</option><option>حكومة فاعلة</option><option>قدرات بشرية</option></select>
+  <select id="gD" class="input"><option>الهدف التفصيلي (96)</option><option>G1.1</option><option>G1.2</option><option>G1.3</option></select></div></div>`;
+}
+function renderSolutions(el,type){
+  el.innerHTML=`<div class="card"><div class="section-title">الحلول (طلب/استقبال)</div>
+  ${tbar([`<button class="btn">نشر طلب حل (للجهات)</button>`,`<button class="btn secondary" onclick="exportCSV('solTbl')">CSV</button>`])}
+  <table class="table" id="solTbl"><thead><tr><th>التحدي/الجهة</th><th>وصف مختصر</th><th>الحالة</th></tr></thead>
+  <tbody><tr><td>تقليل الهدر الغذائي — بلدية</td><td>حلول حوكمة/منصات</td><td>مفتوح</td></tr>
+  <tr><td>رفع كفاءة بيانات التطوع — جمعية</td><td>لوحة مؤشرات وتكامل</td><td>مقفل</td></tr></tbody></table></div>`;
+}
+function renderEmirateSponsorship(el){
+  el.innerHTML=`<div class="card"><div class="section-title">طلب رعاية أمير المنطقة</div>
+  <div class="grid grid-2"><input class="input" placeholder="اسم الجهة"><input class="input" placeholder="اسم الفعالية/المبادرة"><input class="input" placeholder="التاريخ"><input class="input" placeholder="الموقع/المنطقة"></div>
+  <textarea class="input" rows="4" placeholder="الأهداف والمخرجات المتوقعة"></textarea><div class="toolbar"><button class="btn">إرسال الطلب</button></div></div>`;
+}
+function renderSpeakers(el){
+  defaultTable(el,'المتحدثون/المدربون',[['الاسم','المجال','التقييم','طلب حجز'],['خالد الحربي','حوكمة','4.8','طلب'],['ندى السلمي','تحليل بيانات','4.6','طلب']]);
+}
+function renderVolunteer(el){defaultTable(el,'فرص التطوع',[['الفرصة','الجهة','المنطقة'],['منسق فعالية','جمعية','الرياض'],['مصمم تقارير','مبادرة','جدة']]);}
+function renderTraining(el){defaultTable(el,'برامج التدريب',[['البرنامج','الجهة','المدة'],['تحليل أثر','مركز','4 أسابيع'],['حوكمة','جمعية','3 أسابيع']]);}
+function renderCoop(el){defaultTable(el,'التدريب التعاوني',[['الجهة','المسار','المشرف'],['شركة تقنية','علوم بيانات','م. علي'],['وزارة','موارد بشرية','أ. سارة']]);}
+function renderProjects(el){defaultTable(el,'المشاريع/المبادرات',[['العنوان','الجهة','الهدف 2030'],['منصة بيانات تطوع','وزارة','حكومة فاعلة'],['مختبر ابتكار مجتمعي','جامعة','مجتمع حيوي']]);}
+function renderDonations(el){defaultTable(el,'التبرعات',[['التاريخ','الجهة','المبلغ'],['2025-05-10','جمعية','25,000'],['2025-05-18','مشروع','12,000']]);}
+function renderWallet(el){defaultTable(el,'المحفظة الرقمية',[['التاريخ','الوصف','دائن','مدين','الرصيد'],['2025-05-10','تمويل مبادرة','50,000','','150,000'],['2025-05-15','دفعة تنفيذ','','20,000','130,000']]);}
+function defaultTable(el,title,rows){el.innerHTML=`<div class="card"><div class="row"><div class="section-title">${title}</div>${tbar([`<button class="btn secondary" onclick="exportCSV('tbl')">CSV</button>`,`<button class="btn secondary" onclick="printPDF()">PDF</button>`])}</div><div class="toolbar"><input class="input" placeholder="بحث…" oninput="filterRows('tbody',this.value)"></div><table class="table" id="tbl"><tbody id="tbody"></tbody></table></div>`; const body=document.getElementById('tbody'); if(!rows){rows=[['العمود 1','العمود 2','العمود 3'],['—','—','—']];} rows.forEach((r,i)=>{body.insertAdjacentHTML('beforeend',`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`);});}
+function filterRows(tbodyId,q){q=(q||'').toLowerCase();document.getElementById(tbodyId).querySelectorAll('tr').forEach(tr=>{tr.style.display=tr.innerText.toLowerCase().includes(q)?'':'none';});}
 </script>
-
-</body>
-</html>
+</body></html>
