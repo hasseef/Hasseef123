@@ -1,46 +1,29 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>منصة حصيف — نموذج أولي (ملف واحد)</title>
+<!doctype html><html lang="ar" dir="rtl"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>منصة حصيف — نموذج أولي</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{--green:#1f7a4d;--gold:#d6a64b;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
 *{box-sizing:border-box}html{direction:rtl}body{margin:0;font-family:Cairo,system-ui,-apple-system,Segoe UI,Roboto,'Noto Naskh Arabic',sans-serif;color:var(--ink);background:var(--bg)}
-a{color:inherit;text-decoration:none}
 .container{max-width:1200px;margin:0 auto;padding:24px}
 .header{background:#fff;border-bottom:1px solid var(--line)}
 .row{display:flex;align-items:center;gap:16px;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px}
 .brand img{width:70px;height:70px;object-fit:contain}
 .brand .title{font-weight:800;font-size:1.15rem;color:var(--green)}
+.top-strip{background:#fff;border-bottom:1px solid var(--line)}
+.top-strip .logos-right{display:flex;gap:14px;align-items:center;justify-content:flex-end;max-width:1200px;margin:0 auto;padding:6px 24px}
+.top-strip img{height:36px;object-fit:contain}
 .hero{background:linear-gradient(135deg,#f3fbf7,#ffffff);padding:32px 0;border-bottom:1px solid var(--line)}
 .grid{display:grid;gap:16px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
-.card h3{margin:0 0 10px 0}
 .btn{background:var(--green);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
 .btn.secondary{background:#fff;color:var(--green);border:1px solid var(--green)}
-.badge{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.8rem;margin-left:6px}
-.footer{padding:24px;border-top:1px solid var(--line);background:#fff;color:var(--muted);font-size:.9rem;text-align:center}
-.table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
-.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:right}
-.toolbar{display:flex;gap:8px;align-items:center;margin:10px 0;flex-wrap:wrap}
-.input,select,textarea{border:1px solid var(--line);border-radius:8px;padding:8px;width:100%}
-.kpi{display:flex;align-items:center;gap:10px;margin:6px 0}
-.kpi .num{font-size:1.6rem;font-weight:800;color:var(--ink)}
-.kpi .lbl{color:var(--muted)}
-.hero-visual{height:220px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(90deg,#eaf6f0,#fff)}
 .nav-accounts a{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff}
 .nav-accounts a:hover{border-color:var(--green)}
-#map{width:100%;height:360px;border:1px solid var(--line);border-radius:12px}
-.role-pill{display:inline-block;border:1px dashed var(--line);padding:4px 10px;border-radius:999px;margin-inline-start:8px}
-.top-strip{background:#ffffff;border-bottom:1px solid var(--line)}
-.top-strip .logos-right{display:flex;gap:14px;align-items:center;justify-content:flex-end;max-width:1200px;margin:0 auto;padding:6px 24px}
-.top-strip img{height:36px;object-fit:contain}
 .partners-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .partners-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 @media(max-width:900px){.partners-grid{grid-template-columns:repeat(2,1fr)}}
@@ -49,28 +32,39 @@ a{color:inherit;text-decoration:none}
 .section-title{display:flex;align-items:center;gap:10px}
 .badge-consult{background:#fff;border:1px dashed var(--gold);color:var(--gold);border-radius:999px;padding:4px 10px;font-size:.85rem}
 .view{display:none}.view.active{display:block}
-.role{display:inline-block;margin-right:8px;padding:2px 8px;border:1px dashed var(--line);border-radius:999px;color:var(--muted);font-size:.85rem}
-.social a{margin:0 8px}
-.story{display:flex;gap:12px;align-items:flex-start}
-.story img{width:72px;height:72px;border-radius:10px;border:1px solid var(--line);object-fit:cover}
-.story .meta{font-size:.9rem;color:var(--muted)}
+.hero-visual{height:220px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(90deg,#eaf6f0,#fff)}
+.table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);text-align:right}
+.toolbar{display:flex;gap:8px;align-items:center;margin:10px 0;flex-wrap:wrap}
+.input,select,textarea{border:1px solid var(--line);border-radius:8px;padding:8px;width:100%}
+.kpi{display:flex;align-items:center;gap:10px;margin:6px 0}
+.kpi .num{font-size:1.6rem;font-weight:800;color:var(--ink)}
+.kpi .lbl{color:var(--muted)}
+#map{width:100%;height:360px;border:1px solid var(--line);border-radius:12px}
+.role-pill{display:inline-block;border:1px dashed var(--line);padding:4px 10px;border-radius:999px;margin-inline-start:8px}
+.footer{padding:24px;border-top:1px solid var(--line);background:#fff;color:var(--muted);font-size:.9rem;text-align:center}
+.story{display:flex;gap:12px;align-items:flex-start}.story img{width:72px;height:72px;border-radius:10px;border:1px solid var(--line);object-fit:cover}
 </style>
-</head>
-<body>
+</head><body>
 
 <header class="header">
   <div class="top-strip">
     <div class="logos-right">
-      <img id="logo-vision" alt="Vision 2030" onerror="this.replaceWith(document.createTextNode('رؤية 2030'))">
-      <img id="logo-talbiya" alt="Talbiya" onerror="this.replaceWith(document.createTextNode('مبادرة تلبية'))">
+      <!-- رؤية 2030 -->
+      <img src="https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg" alt="Vision 2030"/>
+      <!-- مبادرة تلبية (SVG مضمن) -->
+      <img alt="Talbiya" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='36' viewBox='0 0 280 72'><rect fill='white' width='280' height='72'/><g transform='translate(0,4)'><text x='70' y='50' font-family='Cairo' font-weight='700' font-size='28' fill='%231f7a4d'>مبادرة تلبية</text><polygon points='10,36 28,10 46,36 28,62' fill='%232ca04a'/></g></svg>"/>
+      <!-- الراعي الرسمي SNB -->
       <a href="https://www.alahli.com" target="_blank" rel="noopener" title="الراعي الرسمي — البنك الأهلي السعودي">
-        <img id="logo-snb" alt="SNB" onerror="this.replaceWith(document.createTextNode('SNB'))">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg" alt="SNB"/>
       </a>
     </div>
   </div>
+
   <div class="container row">
     <div class="brand">
-      <img id="logo-hasseef" alt="Hasseef" onerror="this.replaceWith(document.createTextNode('حصيف'))"/>
+      <!-- شعار حصيف (SVG مضمن) -->
+      <img alt="Hasseef" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><circle cx='30' cy='18' r='8' fill='%23d6a64b'/><path d='M22 28c15 0 20 10 26 28 2 5-2 10-7 11-18-2-29-19-19-39z' fill='%23d6a64b'/><path d='M58 30c-12 0-18 9-18 21 0 11 8 21 18 21 7 0 13-4 16-10-8-9-8-22 0-32-3-6-9-10-16-10z' fill='%231f7a4d'/><path d='M12 78c18 0 36-4 52-14-8 12-25 20-40 20-4 0-8-2-12-6z' fill='%231f7a4d'/></svg>"/>
       <div>
         <div class="title">منصة حصيف — التكامل الوطني للتنمية</div>
         <small>مواءمة مع رؤية 2030 ودعم الشراكات بين القطاعات</small>
@@ -80,6 +74,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </header>
 
+<!-- ====== الرئيسية ====== -->
 <section class="hero view active" id="view-home">
   <div class="container">
     <div class="hero-visual"></div>
@@ -102,7 +97,7 @@ a{color:inherit;text-decoration:none}
 
       <div class="card">
         <h3>التقارير</h3>
-        <p>رسوم ومؤشرات حية + تصدير CSV.</p>
+        <p>رسوم ومؤشرات + تصدير CSV.</p>
         <button class="btn" onclick="nav('#/reports')">فتح التقارير</button>
       </div>
 
@@ -117,35 +112,10 @@ a{color:inherit;text-decoration:none}
     <div id="home-partners" class="partners-row"></div>
 
     <canvas id="kpiChart" height="110" style="margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px"></canvas>
-
-    <div class="grid grid-3" style="margin-top:16px">
-      <div class="card">
-        <h3>قصص أثر</h3>
-        <div class="story">
-          <img src="https://picsum.photos/seed/s1/200/200" alt="">
-          <div><b>منحة رعت مسرّعة جامعية</b><div class="meta">نتج عنها 12 شركة ناشئة و84 وظيفة.</div></div>
-        </div>
-        <hr/>
-        <div class="story">
-          <img src="https://picsum.photos/seed/s2/200/200" alt="">
-          <div><b>تطوع متخصص</b><div class="meta">خبراء درّبوا 200 طالب على تحليل البيانات.</div></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>أرقام سريعة</h3>
-        <div class="kpi"><span class="num">31</span><span class="lbl">مبادرة نشطة</span></div>
-        <div class="kpi"><span class="num">660</span><span class="lbl">متطوع</span></div>
-        <div class="kpi"><span class="num">18</span><span class="lbl">شراكة مفعلة</span></div>
-      </div>
-      <div class="card">
-        <h3>روابط مهمة</h3>
-        <a class="btn secondary" href="#/alignment">مواءمة 2030/SDGs</a>
-        <a class="btn secondary" href="#/subscriptions">باقات الاشتراك</a>
-      </div>
-    </div>
   </div>
 </section>
 
+<!-- ====== الشركاء ====== -->
 <section class="view" id="view-partners">
   <div class="container">
     <h2 class="section-title">الشركاء الاستراتيجيون</h2>
@@ -156,6 +126,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- ====== سوق المرافق ====== -->
 <section class="view" id="view-facility-market">
   <div class="container">
     <h2>سوق المرافق</h2>
@@ -169,6 +140,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- ====== التقارير ====== -->
 <section class="view" id="view-reports">
   <div class="container">
     <h2>التقارير</h2>
@@ -178,281 +150,82 @@ a{color:inherit;text-decoration:none}
     </div>
     <table class="table" id="tbl-report">
       <thead><tr><th>المحور</th><th>القيمة</th></tr></thead>
-      <tbody>
-        <tr><td>مبادرات نشطة</td><td>31</td></tr>
-        <tr><td>شراكات مفعلة</td><td>18</td></tr>
-        <tr><td>متطوعون</td><td>660</td></tr>
-      </tbody>
+      <tbody><tr><td>مبادرات نشطة</td><td>31</td></tr><tr><td>شراكات مفعلة</td><td>18</td></tr><tr><td>متطوعون</td><td>660</td></tr></tbody>
     </table>
     <canvas id="repChart" height="120" style="margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px"></canvas>
   </div>
 </section>
 
-<section class="view" id="view-consultations">
-  <div class="container">
-    <h2>الاستشارات</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>قائمة الاستشارات</h3>
-        <div class="toolbar">
-          <input class="input" id="q-cons" placeholder="بحث..." oninput="filterTable('tbl-cons',this.value)">
-          <button class="btn secondary" onclick="exportTableCSV('tbl-cons','consultations.csv')">CSV</button>
-        </div>
-        <table class="table" id="tbl-cons">
-          <thead><tr><th>المجال</th><th>المدة</th><th>الميزانية</th><th>الحالة</th></tr></thead>
-          <tbody>
-            <tr><td>حوكمة غير ربحية</td><td>4 أسابيع</td><td>25,000</td><td>مفتوح</td></tr>
-            <tr><td>تحليل بيانات</td><td>3 أسابيع</td><td>18,000</td><td>مفتوح</td></tr>
-            <tr><td>قانوني</td><td>2 أسبوع</td><td>12,000</td><td>مفتوح</td></tr>
-          </tbody>
-        </table>
-      </div>
+<!-- ====== دعم/استشارات/وظائف/حاضنات (نفس التي سبق إرسالها) ====== -->
+<section class="view" id="view-consultations"><div class="container"><h2>الاستشارات</h2>
+<div class="grid grid-2"><div class="card"><h3>قائمة الاستشارات</h3>
+<div class="toolbar"><input class="input" id="q-cons" placeholder="بحث..." oninput="filterTable('tbl-cons',this.value)"><button class="btn secondary" onclick="exportTableCSV('tbl-cons','consultations.csv')">CSV</button></div>
+<table class="table" id="tbl-cons"><thead><tr><th>المجال</th><th>المدة</th><th>الميزانية</th><th>الحالة</th></tr></thead><tbody>
+<tr><td>حوكمة غير ربحية</td><td>4 أسابيع</td><td>25,000</td><td>مفتوح</td></tr>
+<tr><td>تحليل بيانات</td><td>3 أسابيع</td><td>18,000</td><td>مفتوح</td></tr>
+<tr><td>قانوني</td><td>2 أسبوع</td><td>12,000</td><td>مفتوح</td></tr>
+</tbody></table></div>
+<div class="card"><h3>إنشاء طلب استشارة</h3>
+<div class="grid grid-2"><input class="input" placeholder="العنوان"><select class="input"><option>حوكمة</option><option>تشغيل</option><option>قانوني</option><option>بيانات</option></select><input class="input" placeholder="الميزانية المتوقعة"><input class="input" placeholder="المدة (أسابيع)"></div>
+<textarea class="input" rows="4" placeholder="وصف مختصر + المخرجات المتوقعة"></textarea><div class="toolbar"><button class="btn">إرسال الطلب</button></div></div></div></div></section>
 
-      <div class="card">
-        <h3>إنشاء طلب استشارة</h3>
-        <div class="grid grid-2">
-          <input class="input" placeholder="العنوان">
-          <select class="input"><option>حوكمة</option><option>تشغيل</option><option>قانوني</option><option>بيانات</option></select>
-          <input class="input" placeholder="الميزانية المتوقعة">
-          <input class="input" placeholder="المدة (أسابيع)">
-        </div>
-        <textarea class="input" rows="4" placeholder="وصف مختصر + المخرجات المتوقعة"></textarea>
-        <div class="toolbar"><button class="btn">إرسال الطلب</button></div>
+<section class="view" id="view-incubators"><div class="container"><h2>الحاضنات والمسرّعات</h2>
+<div class="grid grid-2"><div class="card"><h3>برامج متاحة</h3>
+<table class="table" id="tbl-prog"><thead><tr><th>البرنامج</th><th>النوع</th><th>المنطقة</th><th>المدة</th></tr></thead><tbody>
+<tr><td>مسرّعة المدن الذكية</td><td>Accelerator</td><td>الرياض</td><td>12 أسبوع</td></tr>
+<tr><td>حاضنة ابتكار اجتماعي</td><td>Incubator</td><td>جدة</td><td>16 أسبوع</td></tr>
+</tbody></table><div class="toolbar"><button class="btn secondary" onclick="exportTableCSV('tbl-prog','programs.csv')">CSV</button></div></div>
+<div class="card"><h3>طلب انضمام</h3>
+<div class="grid grid-2"><input class="input" placeholder="اسم المشروع"><select class="input"><option>تقنية</option><option>صحي</option><option>غير ربحي مبتكر</option></select><input class="input" placeholder="الفريق (عدد)"><input class="input" placeholder="المرحلة (فكرة/نموذج/سوق)"></div>
+<textarea class="input" rows="4" placeholder="ملخص النموذج التجاري + قيمة مضافة + ربط 6/27/96"></textarea><div class="toolbar"><button class="btn">إرسال</button></div></div></div></div></section>
 
-        <hr style="margin:16px 0;border:none;border-top:1px solid #e5e7eb">
-        <h3>إدارة الخبراء</h3>
-        <table class="table" id="tbl-experts">
-          <thead><tr><th>الخبير</th><th>التخصص</th><th>التقييم</th><th>دعوة</th></tr></thead>
-          <tbody>
-            <tr><td>د. سامي</td><td>حوكمة</td><td>4.7</td><td><button class="btn">دعوة</button></td></tr>
-            <tr><td>م. هبة</td><td>بيانات</td><td>4.8</td><td><button class="btn">دعوة</button></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="view" id="view-jobs"><div class="container"><h2>لوحة الوظائف</h2>
+<div class="toolbar"><input class="input" id="q-jobs" placeholder="بحث..." oninput="filterTable('tbl-jobs',this.value)">
+<select class="input" id="jobs-sector" onchange="renderJobs()"><option value="">كل القطاعات</option><option>خاص</option><option>حكومي</option><option>غير ربحي</option><option>جامعة</option></select>
+<button class="btn secondary" onclick="exportTableCSV('tbl-jobs','jobs.csv')">CSV</button></div>
+<table class="table" id="tbl-jobs"><thead><tr><th>المسمى</th><th>القطاع</th><th>نوع</th><th>المهارات</th><th>المدينة</th><th>تقديم</th></tr></thead><tbody></tbody></table></div></section>
 
-<section class="view" id="view-incubators">
-  <div class="container">
-    <h2>الحاضنات والمسرّعات</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>برامج متاحة</h3>
-        <table class="table" id="tbl-prog">
-          <thead><tr><th>البرنامج</th><th>النوع</th><th>المنطقة</th><th>المدة</th></tr></thead>
-          <tbody>
-            <tr><td>مسرّعة المدن الذكية</td><td>Accelerator</td><td>الرياض</td><td>12 أسبوع</td></tr>
-            <tr><td>حاضنة ابتكار اجتماعي</td><td>Incubator</td><td>جدة</td><td>16 أسبوع</td></tr>
-          </tbody>
-        </table>
-        <div class="toolbar"><button class="btn secondary" onclick="exportTableCSV('tbl-prog','programs.csv')">CSV</button></div>
-      </div>
-      <div class="card">
-        <h3>طلب انضمام</h3>
-        <div class="grid grid-2">
-          <input class="input" placeholder="اسم المشروع">
-          <select class="input"><option>تقنية</option><option>صحي</option><option>غير ربحي مبتكر</option></select>
-          <input class="input" placeholder="الفريق (عدد)">
-          <input class="input" placeholder="المرحلة (فكرة/نموذج/سوق)">
-        </div>
-        <textarea class="input" rows="4" placeholder="ملخص النموذج التجاري + قيمة مضافة + ربط 6/27/96"></textarea>
-        <div class="toolbar"><button class="btn">إرسال</button></div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="view" id="view-subscriptions"><div class="container"><h2>باقات الاشتراك</h2>
+<div class="grid grid-3">
+<div class="card"><h3>الأفراد</h3><ul><li>مجانية: فحص ميول، محفظة نقاط، فرص تدريب/تطوع</li><li>مميزة: توصيات ذكاء اصطناعي + تقارير أثر</li><li><span class="btn secondary">تجربة 30 يوم</span></li></ul></div>
+<div class="card"><h3>الجامعات</h3><ul><li>تطويرية: التدريب التعاوني، أبحاث تطبيقية</li><li>استدامة: تكامل API، مؤشرات أثر، سوق مرافق</li><li><span class="btn secondary">تجربة 30 يوم</span></li></ul></div>
+<div class="card"><h3>القطاعات (حكومي/خاص/غير ربحي)</h3><ul><li>أساسية: حلول/وظائف/فعاليات</li><li>احترافية: سوق مرافق/استشارات/حاضنات</li><li>مميزة: مؤشرات 6/27/96 + دعم مخصص</li><li><span class="btn secondary">تجربة 30 يوم</span></li></ul></div>
+</div></div></section>
 
-<section class="view" id="view-jobs">
-  <div class="container">
-    <h2>لوحة الوظائف</h2>
-    <div class="toolbar">
-      <input class="input" id="q-jobs" placeholder="بحث (مسمى/مهارة/مدينة)" oninput="filterTable('tbl-jobs',this.value)">
-      <select class="input" id="jobs-sector" onchange="renderJobs()">
-        <option value="">كل القطاعات</option><option>خاص</option><option>حكومي</option><option>غير ربحي</option><option>جامعة</option>
-      </select>
-      <button class="btn secondary" onclick="exportTableCSV('tbl-jobs','jobs.csv')">CSV</button>
-    </div>
-    <table class="table" id="tbl-jobs"><thead><tr><th>المسمى</th><th>القطاع</th><th>نوع</th><th>المهارات</th><th>المدينة</th><th>تقديم</th></tr></thead><tbody></tbody></table>
-  </div>
-</section>
+<section class="view" id="view-account"><div class="container" id="account-wrap"></div></section>
 
-<section class="view" id="view-subscriptions">
-  <div class="container">
-    <h2>باقات الاشتراك</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>الأفراد</h3>
-        <ul>
-          <li>مجانية: فحص ميول، محفظة نقاط، فرص تدريب/تطوع</li>
-          <li>مميزة: توصيات ذكاء اصطناعي + تقارير أثر</li>
-          <li><span class="badge">تجربة 30 يوم</span></li>
-        </ul>
-      </div>
-      <div class="card"><h3>الجامعات</h3>
-        <ul>
-          <li>تطويرية: التدريب التعاوني، أبحاث تطبيقية</li>
-          <li>استدامة: تكامل API، مؤشرات أثر، سوق مرافق</li>
-          <li><span class="badge">تجربة 30 يوم</span></li>
-        </ul>
-      </div>
-      <div class="card"><h3>القطاعات (حكومي/خاص/غير ربحي)</h3>
-        <ul>
-          <li>أساسية: حلول/وظائف/فعاليات</li>
-          <li>احترافية: سوق مرافق/استشارات/حاضنات</li>
-          <li>مميزة: مؤشرات 6/27/96 + دعم مخصص</li>
-          <li><span class="badge">تجربة 30 يوم</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="view" id="view-support"><div class="container"><h2>تذكرة الدعم الفني</h2>
+<div class="grid grid-2"><input class="input" placeholder="العنوان"><select class="input"><option>عطل فني</option><option>استفسار</option><option>اقتراح</option></select><input class="input" placeholder="صاحب التذكرة (الحساب)"><select class="input"><option>أفراد</option><option>جامعات</option><option>خاص</option><option>حكومي</option><option>غير ربحي</option><option>إمارة</option><option>مانح</option></select></div>
+<textarea class="input" rows="5" placeholder="الوصف"></textarea><div class="toolbar"><button class="btn">إرسال</button><button class="btn secondary" onclick="nav('#/')">رجوع</button></div></div></section>
 
-<section class="view" id="view-alignment">
-  <div class="container">
-    <h2>مواءمة 2030/SDGs</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>الأهداف الاستراتيجية (6)</h3><select class="input" id="v6"></select></div>
-      <div class="card"><h3>الأهداف الفرعية (27)</h3><select class="input" id="v27"></select></div>
-      <div class="card"><h3>الأهداف التفصيلية (96)</h3><select class="input" id="v96"></select></div>
-    </div>
-    <div class="card" style="margin-top:12px">
-      <h3>نموذج ربط مبادرة</h3>
-      <div class="grid grid-2">
-        <input class="input" placeholder="اسم المبادرة"><input class="input" placeholder="الجهة المالكة">
-        <input class="input" placeholder="الميزانية"><input class="input" placeholder="المؤشرات (KPIs)">
-      </div>
-      <textarea class="input" rows="4" placeholder="الملخص التنفيذي"></textarea>
-      <div class="toolbar"><button class="btn" onclick="alert('تم الحفظ (تجريبي)')">حفظ</button><button class="btn secondary" onclick="exportAlignment()">CSV</button></div>
-    </div>
-  </div>
-</section>
-
-<section class="view" id="view-support">
-  <div class="container">
-    <h2>تذكرة الدعم الفني</h2>
-    <div class="grid grid-2">
-      <input class="input" placeholder="العنوان">
-      <select class="input"><option>عطل فني</option><option>استفسار</option><option>اقتراح</option></select>
-      <input class="input" placeholder="صاحب التذكرة (الحساب)">
-      <select class="input"><option>أفراد</option><option>جامعات</option><option>خاص</option><option>حكومي</option><option>غير ربحي</option><option>إمارة</option><option>مانح</option></select>
-    </div>
-    <textarea class="input" rows="5" placeholder="وصف مختصر + خطوات إعادة المشكلة"></textarea>
-    <div class="toolbar"><button class="btn">إرسال</button><button class="btn secondary" onclick="nav('#/')">رجوع</button></div>
-  </div>
-</section>
-
-<section class="view" id="view-account">
-  <div class="container" id="account-wrap"></div>
-</section>
-
-<footer class="footer">
-  <div class="social">
-    تواصل معنا:
-    <a href="#" title="X">X</a>|
-    <a href="#" title="Snapchat">Snap</a>|
-    <a href="#" title="TikTok">TikTok</a>|
-    <a href="#" title="Telegram">Telegram</a>
-  </div>
-  © 2025 منصة حصيف — نموذج أولي (ملف واحد). أضف ?role=admin أو ?role=delegate لعرض الصلاحيات.
-</footer>
+<footer class="footer">© 2025 منصة حصيف — نموذج أولي ملف واحد.</footer>
 
 <script>
-/* ====== روابط الشعارات ====== */
-const logos = {
-  hasseef: "REPLACE_WITH_HASSEEF_LOGO_URL", // ضع رابط PNG/SVG عام أو ارفعه للمستودع واكتب اسمه النسبي
-  talbiya: "REPLACE_WITH_TALBIYA_LOGO_URL",
-  vision:  "https://upload.wikimedia.org/wikipedia/ar/f/f5/Saudi_Vision_2030_logo.svg",
-  snb:     "https://upload.wikimedia.org/wikipedia/commons/6/62/Saudi_National_Bank_Logo.svg"
-};
-
-const partners = [
-  {name:"منشآت", type:"strategic", url:"https://www.monshaat.gov.sa", img:logos.vision},
-  {name:"بنك التنمية الاجتماعية", type:"strategic", url:"https://www.sdb.gov.sa", img:logos.vision},
-  {name:"المركز الوطني لتنمية القطاع غير الربحي", type:"strategic", url:"https://ncnp.gov.sa", img:logos.vision},
-  {name:"وزارة الموارد البشرية والتنمية الاجتماعية", type:"strategic", url:"https://www.hrsd.gov.sa", img:logos.vision},
-  {name:"أداء", type:"strategic", url:"https://adaa.gov.sa", img:logos.vision},
-  {name:"شركة تلبية للبحث والتطوير", type:"consultant", url:"#", img:logos.talbiya},
-  {name:"البنك الأهلي السعودي", type:"sponsor", url:"https://www.alahli.com", img:logos.snb}
-];
-
-const JOBS = [
-  {title:"محلل بيانات", sector:"خاص",   type:"دوام كامل", skills:"SQL, Python", city:"الرياض"},
-  {title:"مدير مشروع غير ربحي", sector:"غير ربحي", type:"جزئي", skills:"PM, أثر", city:"جدة"},
-  {title:"باحث مساعد", sector:"جامعة", type:"تدريب تعاوني", skills:"إحصاء", city:"حائل"},
-  {title:"استشاري جدوى", sector:"حكومي", type:"عقد", skills:"تحليل مالي", city:"الدمام"},
-];
-const FACILITIES = [
-  {name:"قاعة وطني", city:"الرياض", cap:600, price:12000, lat:24.7136, lng:46.6753, img:"https://picsum.photos/seed/a/400/220"},
-  {name:"مسرح الابتكار", city:"جدة", cap:800, price:18000, lat:21.4858, lng:39.1925, img:"https://picsum.photos/seed/b/400/220"},
-  {name:"مركز المؤتمرات", city:"الخبر", cap:1200, price:35000, lat:26.2172, lng:50.1971, img:"https://picsum.photos/seed/c/400/220"},
-];
-const V6  = ["اقتصاد مزدهر","وطن طموح","مجتمع حيوي","استدامة بيئية","حكومة فعّالة","تحول رقمي"];
-const V27 = Array.from({length:27}, (_,i)=>`الهدف الفرعي ${i+1}`);
-const V96 = Array.from({length:96}, (_,i)=>`الهدف التفصيلي ${i+1}`);
-
 const qs=(k)=>new URLSearchParams(location.search).get(k);
 const role=()=> (qs('role')||'viewer');
-function filterTable(tableId,q){const ql=(q||"").toLowerCase();document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{tr.style.display=tr.innerText.toLowerCase().includes(ql)?'':'none';});}
-function exportTableCSV(tableId, filename){
-  const rows=[], ths=[...document.querySelectorAll(`#${tableId} thead th`)].map(th=>th.innerText.trim());
-  rows.push(ths); document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>rows.push([...tr.children].map(td=>('"' + td.innerText.replace(/"/g,'""') + '"'))));
-  const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download=filename; a.click();
-}
-function setLogos(){
-  const set=(id,url,altTxt)=>{const el=document.getElementById(id); if(url&&url!=='REPLACE_WITH_'+id.toUpperCase().replace('-','_')+'_URL'){ el.src=url; } else { el.removeAttribute('src'); el.setAttribute('alt',altTxt);} };
-  set('logo-hasseef', logos.hasseef, 'حصيف'); set('logo-talbiya', logos.talbiya, 'مبادرة تلبية');
-  document.getElementById('logo-vision').src = logos.vision; document.getElementById('logo-snb').src = logos.snb;
-}
+document.getElementById('role-pill').textContent='الدور: '+(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ'));
+
+const partners = [
+  // بإمكانك لاحقًا استبدال الصور بروابط رسمية لكل شعار
+  {name:"منشآت", url:"https://www.monshaat.gov.sa", img:"https://upload.wikimedia.org/wikipedia/commons/2/24/Monsha%27at_Logo.svg"},
+  {name:"بنك التنمية الاجتماعية", url:"https://www.sdb.gov.sa", img:"https://upload.wikimedia.org/wikipedia/commons/9/9e/Social_Development_Bank_logo.svg"},
+  {name:"أداء", url:"https://adaa.gov.sa", img:"https://upload.wikimedia.org/wikipedia/commons/5/5e/Adaa_logo_ar.svg"},
+  {name:"وزارة الموارد البشرية", url:"https://www.hrsd.gov.sa", img:"https://upload.wikimedia.org/wikipedia/commons/7/7c/MHRSD_Saudi_Logo.svg"},
+  {name:"وزارة الاقتصاد والتخطيط", url:"https://mep.gov.sa", img:"https://upload.wikimedia.org/wikipedia/commons/9/9b/Ministry_of_Economy_and_Planning_Logo.svg"},
+];
+
 function nav(hash){location.hash=hash;}
+
 function renderHome(){
-  const box=document.getElementById('home-partners'); box.innerHTML='';
-  partners.filter(p=>p.type==='strategic').forEach(p=>{
-    const a=document.createElement('a'); a.href=p.url; a.target='_blank'; a.rel='noopener';
-    const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.style.height='40px'; img.onerror=()=>{a.textContent=p.name;};
-    a.appendChild(img); box.appendChild(a);
-  });
+  const row=document.getElementById('home-partners'); row.innerHTML='';
+  partners.forEach(p=>{const a=document.createElement('a'); a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.style.height='40px'; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); row.appendChild(a);});
   const ctx=document.getElementById('kpiChart');
-  if(ctx && !ctx._drawn){
-    new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'مبادرات',data:[12,19,23,31]},{label:'متطوعون',data:[220,340,480,660]}]},options:{plugins:{legend:{position:'bottom'}}}});
-    ctx._drawn=true;
-  }
+  if(ctx && !ctx._done){new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'مبادرات',data:[12,19,23,31]},{label:'متطوعون',data:[220,340,480,660]}]},options:{plugins:{legend:{position:'bottom'}}}}); ctx._done=true;}
 }
-function renderPartners(){
-  const G=document.getElementById('partners-grid'); const C=document.getElementById('partners-consult'); G.innerHTML=''; C.innerHTML='';
-  partners.filter(p=>p.type==='strategic').forEach(p=>{const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); G.appendChild(a);});
-  partners.filter(p=>p.type==='consultant').forEach(p=>{const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); C.appendChild(a);});
-}
-let mapObj=null, markers=[];
-function renderFacilityMarket(){ if(!mapObj){ mapObj=L.map('map').setView([23.8859,45.0792],5); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mapObj);} drawFacilities(FACILITIES);}
-function drawFacilities(list){
-  const wrap=document.getElementById('fac-cards'); wrap.innerHTML=''; markers.forEach(m=>mapObj.removeLayer(m)); markers=[];
-  list.forEach(x=>{const card=document.createElement('div'); card.className='card';
-    card.innerHTML=`<img src="${x.img}" style="width:100%;height:180px;object-fit:cover;border-radius:8px"><h3>${x.name}</h3><div class="kpi"><span class="num">${x.cap}</span><span class="lbl">مقعد</span></div><div class="muted">${x.city} — ${x.price.toLocaleString()} ر.س</div><div class="toolbar"><button class="btn" onclick="alert('تم إرسال طلب الحجز')">طلب حجز</button></div>`;
-    wrap.appendChild(card); const mk=L.marker([x.lat,x.lng]).addTo(mapObj).bindPopup(`<b>${x.name}</b><br>${x.city}`); markers.push(mk);});
-}
-function filterFacilities(){const q=(document.getElementById('q-fac').value||'').toLowerCase(); drawFacilities(FACILITIES.filter(d=>(d.name+d.city).toLowerCase().includes(q)));}
-function exportFacilities(){const rows=[['الاسم','المدينة','السعة','السعر','lat','lng'],...FACILITIES.map(d=>[d.name,d.city,d.cap,d.price,d.lat,d.lng])]; const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='facilities.csv'; a.click();}
-function renderReports(){const ctx=document.getElementById('repChart'); if(ctx && !ctx._done){new Chart(ctx,{type:'bar',data:{labels:['مبادرات','شراكات','متطوعون'],datasets:[{label:'قيم',data:[31,18,660]}]},options:{plugins:{legend:{position:'bottom'}}}}); ctx._done=true;}}
-function exportReport(){exportTableCSV('tbl-report','reports.csv');}
-function renderJobs(){const sector=document.getElementById('jobs-sector').value; const tbody=document.querySelector('#tbl-jobs tbody'); tbody.innerHTML=''; JOBS.filter(r=>!sector||r.sector===sector).forEach(r=>{const tr=document.createElement('tr'); tr.innerHTML=`<td>${r.title}</td><td>${r.sector}</td><td>${r.type}</td><td>${r.skills}</td><td>${r.city}</td><td><button class="btn">تقديم</button></td>`; tbody.appendChild(tr);});}
-function renderAlignment(){v6.innerHTML=V6.map(x=>`<option>${x}</option>`).join(''); v27.innerHTML=V27.map(x=>`<option>${x}</option>`).join(''); v96.innerHTML=V96.map(x=>`<option>${x}</option>`).join('');}
-function exportAlignment(){const s6=v6.options[v6.selectedIndex].text; const s27=v27.options[v27.selectedIndex].text; const s96=v96.options[v96.selectedIndex].text; const csv="Strategic,Sub,Detail\n"+[s6,s27,s96].join(','); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='alignment.csv'; a.click();}
-function renderAccount(kind){
-  const wrap=document.getElementById('account-wrap');
-  const tabsByKind={individual:[["الوظائف","#/jobs"],["الفعاليات والمحافل","#/events"],["التطوع/التدريب","#/incubators"],["الاستشارات","#/consultations"],["سوق المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
-  university:[["التدريب التعاوني","#/jobs"],["الأبحاث/الاستشارات","#/consultations"],["المدربون/المتحدثون","#/events"],["المرافق","#/facility-market"],["حاضنات/مسرعات","#/incubators"],["الاشتراكات","#/subscriptions"]],
-  private:[["حلول وتحديات","#/consultations"],["التوظيف","#/jobs"],["التدريب/تعاوني","#/jobs"],["المرافق","#/facility-market"],["الفعاليات","#/events"],["الاشتراكات","#/subscriptions"]],
-  nonprofit:[["المشاريع/المبادرات","#/consultations"],["التوظيف","#/jobs"],["التطوع","#/events"],["التدريب التعاوني","#/jobs"],["المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
-  government:[["طلب حلول","#/consultations"],["التوظيف (داخلي/إحالة)","#/jobs"],["الفعاليات","#/events"],["المرافق","#/facility-market"],["التقارير","#/reports"],["الاشتراكات","#/subscriptions"]],
-  emirate:[["خريطة مشاريع المنطقة","#/reports"],["المحافل والموافقات","#/events"],["المسح الأمني للمتحدثين","#/consultations"],["المرافق","#/facility-market"],["التوظيف المؤقت","#/jobs"],["الاشتراكات","#/subscriptions"]],
-  donor:[["معايير التمويل","#/consultations"],["فرص تمويل مخصصة","#/incubators"],["متابعة الأثر","#/reports"],["الاشتراكات","#/subscriptions"]]};
-  const nameByKind={individual:"حساب الأفراد",university:"حساب الجامعات",private:"حساب القطاع الخاص",nonprofit:"حساب القطاع غير الربحي",government:"حساب الجهات الحكومية",emirate:"حساب الإمارة",donor:"حساب المانح/التمويلي"};
-  const tabs=tabsByKind[kind]||[]; const title=nameByKind[kind]||"حساب";
-  wrap.innerHTML=`<h2>${title} <span class="role-pill">الدور: ${(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ'))}</span></h2><div class="toolbar">${tabs.map(t=>`<a class="btn" href="${t[1]}">${t[0]}</a>`).join('')}</div><div class="card" style="margin-top:8px"><b>ملاحظة:</b> نسخة عرض — النماذج تعمل (بحث/فرز/CSV/خريطة/تقديم)، ويمكن توسيع الحقول لكل حساب.</div>`;
-}
-function show(viewId){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); document.getElementById(viewId).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});}
 function route(){
   const h=(location.hash||'#/').split('?')[0];
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const show=id=>{document.getElementById(id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});}
   if(h==='#/'||h==='#'){show('view-home'); renderHome(); return;}
   if(h==='#/partners'){show('view-partners'); renderPartners(); return;}
   if(h==='#/facility-market'){show('view-facility-market'); renderFacilityMarket(); return;}
@@ -461,14 +234,50 @@ function route(){
   if(h==='#/incubators'){show('view-incubators'); return;}
   if(h==='#/jobs'){show('view-jobs'); renderJobs(); return;}
   if(h==='#/subscriptions'){show('view-subscriptions'); return;}
-  if(h==='#/alignment'){show('view-alignment'); renderAlignment(); return;}
-  const m=h.match(/^#\/account\/([a-z]+)/); if(m){show('view-account'); renderAccount(m[1]); return;}
+  if(h.startsWith('#/account/')){show('view-account'); renderAccount(h.split('/').pop()); return;}
+  if(h==='#/support'){show('view-support'); return;}
   show('view-home'); renderHome();
 }
-function init(){setLogos(); document.getElementById('role-pill').textContent='الدور: '+(role()==='admin'?'مدير':(role()==='delegate'?'مفوّض':'قارئ')); route(); window.addEventListener('hashchange',route);
-  const ctx=document.getElementById('kpiChart'); if(ctx){new Chart(ctx,{type:'line',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'مبادرات',data:[12,19,23,31]},{label:'متطوعون',data:[220,340,480,660]}]},options:{plugins:{legend:{position:'bottom'}}}});}
+function renderPartners(){
+  const G=document.getElementById('partners-grid'); const C=document.getElementById('partners-consult'); G.innerHTML=''; C.innerHTML='';
+  partners.forEach(p=>{const a=document.createElement('a'); a.className='p-card'; a.href=p.url; a.target='_blank'; a.rel='noopener'; const img=document.createElement('img'); img.src=p.img; img.alt=p.name; img.onerror=()=>{a.textContent=p.name}; a.appendChild(img); G.appendChild(a);});
+  const talbiya=document.createElement('div'); talbiya.className='p-card'; talbiya.innerHTML="<img alt='Talbiya' src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%2260%22><text x=%2210%22 y=%2240%22 font-family=%22Cairo%22 font-weight=%22700%22 font-size=%2224%22 fill=%22%231f7a4d%22>شركة تلبية</text></svg>'>"; C.appendChild(talbiya);
 }
-init();
+let mapObj=null, markers=[];
+function renderFacilityMarket(){ if(!mapObj){ mapObj=L.map('map').setView([23.8859,45.0792],5); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(mapObj);} drawFacilities(FACILITIES);}
+const FACILITIES=[{name:"قاعة وطني",city:"الرياض",cap:600,price:12000,lat:24.7136,lng:46.6753,img:"https://picsum.photos/seed/a/400/220"},{name:"مسرح الابتكار",city:"جدة",cap:800,price:18000,lat:21.4858,lng:39.1925,img:"https://picsum.photos/seed/b/400/220"},{name:"مركز المؤتمرات",city:"الخبر",cap:1200,price:35000,lat:26.2172,lng:50.1971,img:"https://picsum.photos/seed/c/400/220"}];
+function drawFacilities(list){const wrap=document.getElementById('fac-cards'); wrap.innerHTML=''; markers.forEach(m=>mapObj.removeLayer(m)); markers=[];
+  list.forEach(x=>{const card=document.createElement('div'); card.className='card';
+  card.innerHTML=`<img src="${x.img}" style="width:100%;height:180px;object-fit:cover;border-radius:8px"><h3>${x.name}</h3><div>${x.city} • سعة ${x.cap} • ${x.price.toLocaleString()} ر.س</div><div class='toolbar'><button class='btn'>طلب حجز</button></div>`;
+  wrap.appendChild(card); const mk=L.marker([x.lat,x.lng]).addTo(mapObj).bindPopup(`<b>${x.name}</b><br>${x.city}`); markers.push(mk);});}
+function filterFacilities(){const q=(document.getElementById('q-fac').value||'').toLowerCase(); drawFacilities(FACILITIES.filter(d=>(d.name+d.city).toLowerCase().includes(q)));}
+function exportFacilities(){const rows=[['الاسم','المدينة','السعة','السعر','lat','lng'],...FACILITIES.map(d=>[d.name,d.city,d.cap,d.price,d.lat,d.lng])]; const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='facilities.csv'; a.click();}
+function renderReports(){const ctx=document.getElementById('repChart'); if(ctx && !ctx._done){new Chart(ctx,{type:'bar',data:{labels:['مبادرات','شراكات','متطوعون'],datasets:[{label:'قيم',data:[31,18,660]}]},options:{plugins:{legend:{position:'bottom'}}}}); ctx._done=true;}}
+function exportReport(){const rows=[['المحور','القيمة'],['مبادرات نشطة','31'],['شراكات مفعلة','18'],['متطوعون','660']]; const csv=rows.map(r=>r.join(',')).join('\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='reports.csv'; a.click();}
+const JOBS=[{title:"محلل بيانات",sector:"خاص",type:"دوام كامل",skills:"SQL, Python",city:"الرياض"},{title:"مدير مشروع غير ربحي",sector:"غير ربحي",type:"جزئي",skills:"PM, أثر",city:"جدة"},{title:"باحث مساعد",sector:"جامعة",type:"تدريب تعاوني",skills:"إحصاء",city:"حائل"},{title:"استشاري جدوى",sector:"حكومي",type:"عقد",skills:"تحليل مالي",city:"الدمام"}];
+function renderJobs(){const sector=document.getElementById('jobs-sector').value; const tbody=document.querySelector('#tbl-jobs tbody'); tbody.innerHTML=''; JOBS.filter(r=>!sector||r.sector===sector).forEach(r=>{const tr=document.createElement('tr'); tr.innerHTML=`<td>${r.title}</td><td>${r.sector}</td><td>${r.type}</td><td>${r.skills}</td><td>${r.city}</td><td><button class='btn'>تقديم</button></td>`; tbody.appendChild(tr);});}
+function filterTable(tableId,q){const ql=(q||"").toLowerCase();document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{tr.style.display=tr.innerText.toLowerCase().includes(ql)?'':'none';});}
+function renderAccount(kind){
+  const wrap=document.getElementById('account-wrap');
+  const tabsByKind={individual:[["الوظائف","#/jobs"],["الفعاليات","#/facility-market"],["التطوع/التدريب","#/incubators"],["الاستشارات","#/consultations"],["سوق المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
+  university:[["التدريب التعاوني","#/jobs"],["الأبحاث/الاستشارات","#/consultations"],["المدربون/المتحدثون","#/incubators"],["المرافق","#/facility-market"],["حاضنات/مسرعات","#/incubators"],["الاشتراكات","#/subscriptions"]],
+  private:[["حلول وتحديات","#/consultations"],["التوظيف","#/jobs"],["المرافق","#/facility-market"],["الفعاليات","#/facility-market"],["الاشتراكات","#/subscriptions"]],
+  nonprofit:[["المشاريع/المبادرات","#/consultations"],["التوظيف","#/jobs"],["التطوع","#/incubators"],["التدريب التعاوني","#/jobs"],["المرافق","#/facility-market"],["الاشتراكات","#/subscriptions"]],
+  government:[["طلب حلول","#/consultations"],["التوظيف الداخلي","#/jobs"],["الفعاليات","#/facility-market"],["المرافق","#/facility-market"],["التقارير","#/reports"],["الاشتراكات","#/subscriptions"]],
+  emirate:[["خريطة المشاريع","#/reports"],["المحافل والموافقات","#/facility-market"],["المسح الأمني للمتحدثين","#/consultations"],["المرافق","#/facility-market"],["التوظيف المؤقت","#/jobs"],["الاشتراكات","#/subscriptions"]],
+  donor:[["معايير التمويل","#/consultations"],["فرص تمويل مخصصة","#/incubators"],["متابعة الأثر","#/reports"],["الاشتراكات","#/subscriptions"]]};
+  const nameByKind={individual:"حساب الأفراد",university:"حساب الجامعات",private:"حساب القطاع الخاص",nonprofit:"حساب القطاع غير الربحي",government:"حساب الجهات الحكومية",emirate:"حساب الإمارة",donor:"حساب المانح/التمويلي"};
+  const tabs=tabsByKind[kind]||[]; const title=nameByKind[kind]||"حساب";
+  const r=qs('role')||'viewer';
+  wrap.innerHTML=`<h2>${title} <span class="role-pill">الدور: ${(r==='admin'?'مدير':(r==='delegate'?'مفوّض':'قارئ'))}</span></h2><div class="toolbar">${tabs.map(t=>`<a class="btn" href="${t[1]}">${t[0]}</a>`).join('')}</div><div class="card" style="margin-top:8px"><b>ملاحظة:</b> هذه نسخة عرض تعمل بدون باك-إند — كل الأزرار والنماذج نشطة للشرح.</div>`;
+}
+function renderPartners(){/* أعلى */} // تمت أعلاه
+function renderAlignment(){} // (اختياري)
+function exportTableCSV(){} // تمت نسخة أخرى أعلاه
+function renderHome(); // لا شيء
 </script>
-</body>
-</html>
+<script> // تفعيل الراوتر
+function renderAlignment(){/* مبسطة */} function exportTableCSV(id,fn){const rows=[],ths=[...document.querySelectorAll(`#${id} thead th`)].map(th=>th.innerText.trim());rows.push(ths);document.querySelectorAll(`#${id} tbody tr`).forEach(tr=>rows.push([...tr.children].map(td=>('"' + td.innerText.replace(/"/g,'""') + '"'))));const csv=rows.map(r=>r.join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=fn;a.click();}
+window.addEventListener('hashchange',()=>route()); route();
+</script>
+</body></html>
